@@ -1,5 +1,11 @@
 package com.example.travelapp.utils.resource
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -18,6 +24,7 @@ object Dimens {
     val radiusNormal = 12.dp
     val radiusMedium = 16.dp
     val radiusLarge = 24.dp
+    val circleRadius = 150.dp
 
     //text size
     val textSizeSmaller = 10.sp
@@ -33,4 +40,18 @@ object Dimens {
     val elevationLow = 2.dp
     val elevationMedium = 6.dp
     val elevationHigh = 12.dp
+
+
+    //size
+    val buttonHeight = 70.dp
+
+
+    //diff
+    /**
+     * Lấy chiều cao của status bar.
+     * Hàm này phải được gọi từ bên trong một Composable.
+     */
+    val statusBarHeight: Dp
+        @Composable
+        get() = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
 }

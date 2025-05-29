@@ -5,6 +5,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.travelapp.utils.resource.Dimens
 
 // Set of Material typography styles to start with
 val AppTypography = Typography(
@@ -28,5 +29,12 @@ val AppTypography = Typography(
         fontSize = 11.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
-    )
+    ),
+    titleMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Medium,
+        fontSize = Dimens.textSizeBig,
+        lineHeight = Dimens.textSizeBig,
+        letterSpacing = 0.5.sp
+    ),
 )
