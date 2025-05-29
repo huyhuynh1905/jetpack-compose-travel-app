@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.ui.navigation.ScreenNames
@@ -20,7 +21,7 @@ fun SplashScreen(navController: NavController) {
     // LaunchedEffect sẽ chạy coroutine khi Composable được đưa vào cây UI lần đầu tiên
     // và sẽ bị hủy khi Composable bị loại bỏ.
     // `true` làm key có nghĩa là hiệu ứng này chỉ chạy một lần.
-    BaseScreen(viewModel = SplashViewModel()) {
+    BaseScreen(viewModel = viewModel<SplashViewModel>()) {
         LaunchedEffect(key1 = true) {
             delay(2000L) // Chờ 2 giây (2000 milliseconds)
             navController.navigate(ScreenNames.SAMPLE_SCREEN)
