@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp"
         tools:targetApi="31">
-
         <activity
-            android:name=".presentation.splash.SplashActivity"
+            android:name=".MainActivity"
             android:exported="true"
+            android:label="@string/title_activity_main"
             android:theme="@style/Theme.TravelApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- SampleActivity: Màn hình sample -->
+        <activity
+            android:name=".presentation.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TravelApp">
+        </activity> <!-- SampleActivity: Màn hình sample -->
         <activity
             android:name=".presentation.sample.SampleActivity"
             android:exported="false"
-            android:theme="@style/Theme.TravelApp">
-
-        </activity>
-
+            android:theme="@style/Theme.TravelApp"></activity>
     </application>
 
 </manifest>

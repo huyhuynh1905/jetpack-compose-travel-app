@@ -1,9 +1,5 @@
 package com.example.travelapp.presentation.sample
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
@@ -24,7 +20,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,25 +36,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.travelapp.R
 import com.example.travelapp.utils.resource.Dimens
 
-class SampleActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Conversation(
-                listOf(
-                    Message("Android1", "Jetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose lorem"),
-                    Message("Android2", "Jetpack Composeack Composeack Composeack Composeack Composeack Composeack Compose"),
-                    Message("Android3", "Jetpack Compose"),
-                    Message("Android4", "Jetpack Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose"),
-                    Message("Android5", "Jetpack Compose"),
-                )
-            )
-        }
-    }
+@Composable
+fun SampleScreen(navController: NavController){
+    Conversation(
+        listOf(
+            Message("Android1", "Jetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose lorem"),
+            Message("Android2", "Jetpack Composeack Composeack Composeack Composeack Composeack Composeack Compose"),
+            Message("Android3", "Jetpack Compose"),
+            Message("Android4", "Jetpack Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose"),
+            Message("Android5", "Jetpack Compose"),
+        )
+    )
 }
 
 
