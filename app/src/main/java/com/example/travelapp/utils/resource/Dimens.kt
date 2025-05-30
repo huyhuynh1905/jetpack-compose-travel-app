@@ -43,6 +43,7 @@ object Dimens {
 
 
     //size
+    val zero = 0.dp
     val buttonHeight = 70.dp
 
 

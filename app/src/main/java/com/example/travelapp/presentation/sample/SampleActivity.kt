@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
@@ -38,19 +39,37 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.travelapp.R
+import com.example.travelapp.ui.component.ImageCardView
 import com.example.travelapp.utils.resource.Dimens
 
 @Composable
 fun SampleScreen(navController: NavController){
-    Conversation(
-        listOf(
-            Message("Android1", "Jetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose lorem"),
-            Message("Android2", "Jetpack Composeack Composeack Composeack Composeack Composeack Composeack Compose"),
-            Message("Android3", "Jetpack Compose"),
-            Message("Android4", "Jetpack Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose"),
-            Message("Android5", "Jetpack Compose"),
+    Column {
+        Conversation(
+            listOf(
+                Message(
+                    "Android1",
+                    "Jetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose lorem"
+                ),
+                Message(
+                    "Android2",
+                    "Jetpack Composeack Composeack Composeack Composeack Composeack Composeack Compose"
+                ),
+                Message("Android3", "Jetpack Compose"),
+                Message(
+                    "Android4",
+                    "Jetpack Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose"
+                ),
+                Message("Android5", "Jetpack Compose"),
+            )
         )
-    )
+        ImageCardView(
+            model = "https://hotelnikkohanoi.com.vn/wp-content/uploads/2023/05/co-do-hue-dia-diem-chup-anh-dep-o-hue.jpeg",
+            contentDescription = "Dai Noi, Hue",
+            tag = "#place",
+            distance = "10km"
+        )
+    }
 }
 
 
@@ -59,7 +78,7 @@ data class Message(val author: String, val body: String)
 @Composable
 fun Conversation(messages: List<Message>) {
     Box(modifier = Modifier
-        .fillMaxSize()
+        .fillMaxWidth()
         .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
     ) {
         LazyColumn {
@@ -113,7 +132,9 @@ fun MessageCard(message: Message){
                 shadowElevation = Dimens.elevationNormal,
                 color = surfaceColor,
                 // animateContentSize will change the Surface size gradually
-                modifier = Modifier.animateContentSize().padding(1.dp)
+                modifier = Modifier
+                    .animateContentSize()
+                    .padding(1.dp)
             ) {
                 Text(
                     text = message.body,
@@ -136,13 +157,30 @@ fun MessageCard(message: Message){
 )
 @Composable
 fun PreviewMessageCard(){
-    Conversation(
-        listOf(
-            Message("Android1", "Jetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose lorem"),
-            Message("Android2", "Jetpack Composeack Composeack Composeack Composeack Composeack Composeack Compose"),
-            Message("Android3", "Jetpack Compose"),
-            Message("Android4", "Jetpack Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose"),
-            Message("Android5", "Jetpack Compose"),
+    Column {
+        Conversation(
+            listOf(
+                Message(
+                    "Android1",
+                    "Jetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose loremJetpack Compose lorem"
+                ),
+                Message(
+                    "Android2",
+                    "Jetpack Composeack Composeack Composeack Composeack Composeack Composeack Compose"
+                ),
+                Message("Android3", "Jetpack Compose"),
+                Message(
+                    "Android4",
+                    "Jetpack Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose Compose"
+                ),
+                Message("Android5", "Jetpack Compose"),
+            )
         )
-    )
+        ImageCardView(
+            model = "https://hotelnikkohanoi.com.vn/wp-content/uploads/2023/05/co-do-hue-dia-diem-chup-anh-dep-o-hue.jpeg",
+            contentDescription = "Dai Noi, Hue",
+            tag = "#place",
+            distance = "10km"
+        )
+    }
 }
