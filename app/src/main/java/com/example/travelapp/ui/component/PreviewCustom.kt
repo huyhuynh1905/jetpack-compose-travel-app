@@ -1,6 +1,5 @@
 package com.example.travelapp.ui.component
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -23,7 +22,24 @@ import com.example.travelapp.utils.resource.Dimens
 annotation class Pixel6APreview // Tên annotation của bạn
 
 @Composable
-fun PreviewNoStatusBar(
+fun PreviewNoPaddingStatusBar(
+    content: @Composable () -> Unit
+){
+    TravelAppTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    top = Dimens.statusBarHeight
+                )
+        ) {
+            content()
+        }
+    }
+}
+
+@Composable
+fun PreviewWithStatusBar(
     content: @Composable () -> Unit
 ){
     TravelAppTheme {

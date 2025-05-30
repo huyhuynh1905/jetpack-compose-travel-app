@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,6 +44,8 @@ object Dimens {
     //size
     val zero = 0.dp
     val buttonHeight = 70.dp
+    val appBarHeight = 40.dp
+    val backButtonSize = 20.dp
 
 
     //diff

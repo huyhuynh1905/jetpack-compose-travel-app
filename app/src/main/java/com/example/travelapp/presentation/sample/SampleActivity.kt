@@ -10,13 +10,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -38,13 +34,19 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.travelapp.R
+import com.example.travelapp.ui.component.AppBarComponent
 import com.example.travelapp.ui.component.ImageCardView
 import com.example.travelapp.utils.resource.Dimens
 
 @Composable
 fun SampleScreen(navController: NavController){
     Column {
+        AppBarComponent(
+            navController = navController,
+            title = "Sample Screen"
+        )
         Conversation(
             listOf(
                 Message(
@@ -79,7 +81,6 @@ data class Message(val author: String, val body: String)
 fun Conversation(messages: List<Message>) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
     ) {
         LazyColumn {
             items(messages) { message ->
@@ -158,6 +159,10 @@ fun MessageCard(message: Message){
 @Composable
 fun PreviewMessageCard(){
     Column {
+        AppBarComponent(
+            navController = rememberNavController(),
+            title = "Sample Screen"
+        )
         Conversation(
             listOf(
                 Message(
