@@ -60,13 +60,14 @@ fun AppBarComponent(
                             navController.popBackStack()
                         }
                     },
-                    modifier = Modifier
-                        .size(Dimens.backButtonSize)
+
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                         contentDescription = "Navigate back", // Mô tả cho accessibility
-                        tint = dark
+                        tint = dark,
+                        modifier = Modifier
+                            .size(Dimens.backButtonSize)
                     )
                 }
             }

@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
@@ -27,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.example.travelapp.R
 import com.example.travelapp.ui.themes.redBg
+import com.example.travelapp.utils.extension.customClickable
 import com.example.travelapp.utils.resource.Dimens
 
 @Composable
@@ -49,14 +51,9 @@ fun ButtonComponent(
                 .height(height)
                 .fillMaxWidth()
                 .background(color = color, shape = CircleShape)
-                .clickable(
+                .clip(CircleShape)
+                .customClickable(
                     onClick = onClick,
-                    role = Role.Button,
-                    enabled = enabled,
-                    indication = ripple(
-                        color = Color.White,
-                    ),
-                    interactionSource = remember { MutableInteractionSource() }
                 )
                 .padding(horizontal = Dimens.pdMedium)
         ) {

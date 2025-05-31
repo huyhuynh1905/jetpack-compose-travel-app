@@ -86,7 +86,7 @@ fun ImageCardView(
                             color = Color.White
                         )
                     ){
-                        append("$distance")
+                        append(distance)
                     }
 
                 },
