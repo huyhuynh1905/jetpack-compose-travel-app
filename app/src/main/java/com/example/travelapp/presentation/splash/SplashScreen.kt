@@ -3,6 +3,7 @@ package com.example.travelapp.presentation.splash
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import androidx.navigation.NavController
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.ui.navigation.ScreenNames
+import com.example.travelapp.utils.resource.Dimens
 import kotlinx.coroutines.delay
 
 
@@ -30,7 +32,7 @@ fun SplashScreen(navController: NavController) {
                     LaunchedEffect(Unit) {
                         delay(2000)
 
-                        navController.navigate(ScreenNames.START_SCREEN) {
+                        navController.navigate(ScreenNames.SAMPLE_SCREEN) {
                             // Xóa SplashScreen khỏi backstack
                             popUpTo(ScreenNames.SPLASH_SCREEN) {
                                 inclusive = true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa
@@ -53,6 +55,7 @@ fun SplashScreen(navController: NavController) {
                     painter = painterResource(R.drawable.travel_logo),
                     contentDescription = null,
                     modifier = Modifier.align(Alignment.Center)
+                        .size(Dimens.logoSize)
                 )
             }
         }

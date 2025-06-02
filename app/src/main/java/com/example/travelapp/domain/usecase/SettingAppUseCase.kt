@@ -9,5 +9,5 @@ class SettingAppUseCase @Inject constructor(
 
     fun isFirstOpen(): Boolean = settingAppRepository.isFirstOpenApp()
 
-    fun saveFirstOpen(isFirstOpen: Boolean = false) = settingAppRepository.saveFirstOpenApp(isFirstOpen)
+    fun saveFirstOpen(isFirstOpen: Boolean = false) = settingAppRepository.saveFirstOpenApp(isFirstOpen = isFirstOpen)
 }

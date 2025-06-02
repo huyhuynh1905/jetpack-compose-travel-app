@@ -1,9 +1,11 @@
 package com.example.travelapp.utils.resource
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,6 +52,7 @@ object Dimens {
     val buttonHeight = 70.dp
     val appBarHeight = 40.dp
     val backButtonSize = 20.dp
+    val backIconSize = 30.dp
     val logoSize = 70.dp
 
 
@@ -69,4 +72,9 @@ object Dimens {
     val navSysBarHeight: Dp
         @Composable
         get() = WindowInsets.statusBars.asPaddingValues().calculateBottomPadding()
+
+    val screenWidth: Dp
+        @SuppressLint("ConfigurationScreenWidthHeight")
+        @Composable
+        get() = LocalConfiguration.current.screenWidthDp.dp
 }

@@ -15,11 +15,8 @@ class SplashViewModel @Inject constructor(
     }
 
     fun isFirstOpen(): Boolean {
+        showLog("isFirstOpen call: ${settingAppUseCase.isFirstOpen()}")
         return settingAppUseCase.isFirstOpen()
-    }
-
-    fun saveFirstOpen() {
-        settingAppUseCase.saveFirstOpen()
     }
 
 }

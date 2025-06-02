@@ -38,6 +38,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.travelapp.R
 import com.example.travelapp.ui.component.AppBarComponent
 import com.example.travelapp.ui.component.ImageCardView
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.utils.resource.Dimens
 
 @Composable
@@ -69,7 +70,10 @@ fun SampleScreen(navController: NavController){
             model = "https://hotelnikkohanoi.com.vn/wp-content/uploads/2023/05/co-do-hue-dia-diem-chup-anh-dep-o-hue.jpeg",
             contentDescription = "Dai Noi, Hue",
             tag = "#place",
-            distance = "10km"
+            distance = "10km",
+            onClick = {
+                navController.navigate(ScreenNames.SPLASH_SCREEN)
+            }
         )
     }
 }
@@ -116,7 +120,9 @@ fun MessageCard(message: Message){
         )
 
         Column(modifier = Modifier.clickable (
-            onClick = {isExpanded = !isExpanded },
+            onClick = {
+                isExpanded = !isExpanded
+            },
             interactionSource = remember { MutableInteractionSource() },
             // Replace rememberRipple with the new ripple API
             indication = ripple(
