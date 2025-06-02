@@ -2,4 +2,6 @@
     <string name="app_name">TravelApp</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="wellcome_travel_app">Welcome to\nTravel App</string>
+    <string name="start_des_travel_app">Are you ready for the journey full\nof smiles?</string>
 </resources>

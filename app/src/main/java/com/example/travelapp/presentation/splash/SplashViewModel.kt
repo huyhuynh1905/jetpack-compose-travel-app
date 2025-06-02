@@ -1,10 +1,25 @@
 package com.example.travelapp.presentation.splash
 
 import com.example.travelapp.base.screen.BaseViewModel
+import com.example.travelapp.domain.usecase.SettingAppUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel @Inject constructor() : BaseViewModel() {
+class SplashViewModel @Inject constructor(
+    private val settingAppUseCase: SettingAppUseCase
+) : BaseViewModel() {
+
+    init {
+        showLog("SplashViewModel init call")
+    }
+
+    fun isFirstOpen(): Boolean {
+        return settingAppUseCase.isFirstOpen()
+    }
+
+    fun saveFirstOpen() {
+        settingAppUseCase.saveFirstOpen()
+    }
 
 }

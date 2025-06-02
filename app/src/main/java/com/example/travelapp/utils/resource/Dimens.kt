@@ -15,7 +15,11 @@ object Dimens {
     val pdSmall = 8.dp
     val pdNormal = 12.dp
     val pdMedium = 16.dp
-    val pdLarge = 24.dp
+    val pdBig = 20.dp
+    val pdBiger = 24.dp
+    val pdLarge = 26.dp
+    val pdLarger = 30.dp
+    val pdLargest = 40.dp
 
 
     //radius
@@ -46,6 +50,7 @@ object Dimens {
     val buttonHeight = 70.dp
     val appBarHeight = 40.dp
     val backButtonSize = 20.dp
+    val logoSize = 70.dp
 
 
     //diff
@@ -56,4 +61,12 @@ object Dimens {
     val statusBarHeight: Dp
         @Composable
         get() = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
+
+    /**
+     * Lấy chiều cao của status bar.
+     * Hàm này phải được gọi từ bên trong một Composable.
+     */
+    val navSysBarHeight: Dp
+        @Composable
+        get() = WindowInsets.statusBars.asPaddingValues().calculateBottomPadding()
 }
