@@ -116,7 +116,7 @@ fun PageOnBoardView(
                         .height(Dimens.buttonHeight)
                         .width(Dimens.buttonHeight)
                         .clip(CircleShape)
-                        .background(Color.White.copy(alpha = 0.2f))
+                        .background(Color.White.copy(alpha = 0.4f))
                         .customClickable(
                             onClick = {
                                 goBack()

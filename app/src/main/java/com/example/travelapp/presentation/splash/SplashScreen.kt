@@ -32,7 +32,7 @@ fun SplashScreen(navController: NavController) {
                     LaunchedEffect(Unit) {
                         delay(2000)
 
-                        navController.navigate(ScreenNames.SAMPLE_SCREEN) {
+                        navController.navigate(ScreenNames.START_SCREEN) {
                             // Xóa SplashScreen khỏi backstack
                             popUpTo(ScreenNames.SPLASH_SCREEN) {
                                 inclusive = true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa
