@@ -62,6 +62,7 @@ fun SelectAccountScreen(navController: NavController) {
                 )
         ) {
             //phần hiển thị thông tin
+            Spacer(modifier = Modifier.height(Dimens.pdBig*3))
             Image(
                 painter = painterResource(id = R.drawable.ic_plane),
                 contentDescription = null,
@@ -117,7 +118,7 @@ fun SelectAccountScreen(navController: NavController) {
 
                 }
             )
-            Spacer(modifier = Modifier.height(Dimens.pdBig))
+            Spacer(modifier = Modifier.height(Dimens.pdSmaller))
         }
     }
 }
@@ -203,12 +204,13 @@ fun AddAccountItem(
             ) {
                 Surface(
                     shape = RoundedCornerShape(Dimens.radiusMedium),
+                    color = Color.White,
                     modifier = Modifier
                         .size(Dimens.sizeAvatarLogin)
                         .shadow( // Áp dụng shadow cho Box
                             elevation = Dimens.elevationMedium,
                             shape = RoundedCornerShape(Dimens.radiusMedium), // Hình dạng của shadow, nên khớp với hình dạng bạn muốn cho Icon
-                            clip = true // Nếu true, Box sẽ bị clip theo shape, shadow vẫn vẽ bên ngoài,
+                            clip = false // Nếu true, Box sẽ bị clip theo shape, shadow vẫn vẽ bên ngoài,
                         )
                         .background(
                             Color.White,
@@ -220,7 +222,9 @@ fun AddAccountItem(
                         imageVector = Icons.Default.Add,
                         contentDescription = null,
                         tint = redBg,
-                        modifier = Modifier.background(Color.White)
+                        modifier = Modifier
+                            .background(Color.White)
+                            .fillMaxSize()
                     )
                 }
                 Spacer(modifier = Modifier.width(Dimens.pdNormal))

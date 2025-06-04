@@ -3,7 +3,9 @@ package com.example.travelapp.utils.resource
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
@@ -67,13 +69,10 @@ object Dimens {
         @Composable
         get() = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
 
-    /**
-     * Lấy chiều cao của status bar.
-     * Hàm này phải được gọi từ bên trong một Composable.
-     */
+
     val navSysBarHeight: Dp
         @Composable
-        get() = WindowInsets.statusBars.asPaddingValues().calculateBottomPadding()
+        get() = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
 
     val screenWidth: Dp
         @SuppressLint("ConfigurationScreenWidthHeight")
