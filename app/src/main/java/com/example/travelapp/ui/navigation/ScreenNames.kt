@@ -5,4 +5,5 @@ object ScreenNames {
     const val SAMPLE_SCREEN = "SAMPLE_SCREEN"
     const val START_SCREEN = "START_SCREEN"
     const val ONBOARD_SCREEN = "ONBOARD_SCREEN"
+    const val SELECT_ACC_SCREEN = "SELECT_ACC_SCREEN"
 }

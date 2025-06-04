@@ -1,4 +1,4 @@
 package com.example.travelapp.domain.model
 
-class BaseModel {
+open class BaseModel {
 }

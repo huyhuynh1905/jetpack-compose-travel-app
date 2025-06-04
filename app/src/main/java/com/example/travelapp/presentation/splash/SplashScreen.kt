@@ -42,7 +42,7 @@ fun SplashScreen(navController: NavController) {
                         }
                     }
                 } else {
-                    navController.navigate(ScreenNames.SAMPLE_SCREEN) {
+                    navController.navigate(ScreenNames.SELECT_ACC_SCREEN) {
                         // Xóa SplashScreen khỏi backstack
                         popUpTo(ScreenNames.SPLASH_SCREEN) {
                             inclusive = true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa

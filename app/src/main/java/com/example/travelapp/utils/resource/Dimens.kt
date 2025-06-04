@@ -39,6 +39,7 @@ object Dimens {
     val textSizeBiger = 18.sp
     val textSizeLarge = 20.sp
     val textSizeLargest = 24.sp
+    val textSizeSpecialLarge = 30.sp
 
     // Elevation
     val elevationNormal = 1.dp
@@ -54,6 +55,7 @@ object Dimens {
     val backButtonSize = 20.dp
     val backIconSize = 30.dp
     val logoSize = 70.dp
+    val sizeAvatarLogin = 50.dp
 
 
     //diff

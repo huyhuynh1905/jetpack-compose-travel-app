@@ -19,8 +19,8 @@ fun OnBoardPageThree(viewModel: OnBoardPageMainViewModel) {
         goNext = {
             viewModel.saveFirstOpen()
             navController?.navigate(ScreenNames.SAMPLE_SCREEN) {
-                // Xóa SplashScreen khỏi backstack
-                popUpTo(navController.graph.startDestinationId) {
+                // Xóa all back stack
+                popUpTo(0) {
                     inclusive = true // Quan trọng: Bao gồm cả ONBOARD_SCREEN trong việc xóa
                 }
                 launchSingleTop = true
