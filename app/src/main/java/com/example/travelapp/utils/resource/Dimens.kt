@@ -58,6 +58,7 @@ object Dimens {
     val backIconSize = 30.dp
     val logoSize = 70.dp
     val sizeAvatarLogin = 50.dp
+    val sizeAddAccount = 30.dp
 
 
     //diff

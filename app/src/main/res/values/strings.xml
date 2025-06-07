@@ -7,4 +7,9 @@
     <string name="hello_there">Hello there!</string>
     <string name="des_select_account">A small step for a great journey\nexperience</string>
     <string name="use_another_account">User other account</string>
+    <string name="add_account">Add Account</string>
+    <string name="des_add_account">Store the best of your journey with us \nand share it with your friends</string>
+    <string name="add_google">Continue with Google</string>
+    <string name="add_facebook">Continue with Facebook</string>
+    <string name="add_user">Start with Email</string>
 </resources>

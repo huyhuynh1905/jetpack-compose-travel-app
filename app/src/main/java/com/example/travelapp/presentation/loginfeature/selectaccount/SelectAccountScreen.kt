@@ -41,6 +41,7 @@ import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.domain.model.SelectAccountModel
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.Pixel6APreview
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.ui.themes.redBg
 import com.example.travelapp.ui.themes.yellowOr
@@ -104,7 +105,7 @@ fun SelectAccountScreen(navController: NavController) {
                     AddAccountItem(
                         click = {
                             viewModel.showLog("AddAccountItem click")
-
+                            navController.navigate(ScreenNames.ADD_ACC_SCREEN)
                         }
                     )
                 }
@@ -115,7 +116,7 @@ fun SelectAccountScreen(navController: NavController) {
             ButtonComponent(
                 text = "Next",
                 onClick = {
-
+                    navController.navigate(ScreenNames.ADD_ACC_SCREEN)
                 }
             )
             Spacer(modifier = Modifier.height(Dimens.pdSmaller))

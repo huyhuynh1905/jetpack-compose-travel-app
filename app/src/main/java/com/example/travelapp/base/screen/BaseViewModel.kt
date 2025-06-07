@@ -2,6 +2,7 @@ package com.example.travelapp.base.screen
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.travelapp.TravelApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 /**
@@ -13,5 +14,9 @@ abstract class BaseViewModel : ViewModel() {
 
     fun showLog(message: String){
         Log.d(TAG, message)
+    }
+
+    fun getStringResource(id: Int): String {
+        return TravelApplication.getInstance().getString(id)
     }
 }

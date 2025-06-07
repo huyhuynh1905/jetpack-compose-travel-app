@@ -2,10 +2,12 @@ package com.example.travelapp.presentation.loginfeature.selectaccount
 
 import com.example.travelapp.base.screen.BaseViewModel
 import com.example.travelapp.domain.model.SelectAccountModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
+@HiltViewModel
 class SelectAccountViewModel @Inject constructor() : BaseViewModel() {
 
     private val listAccount = MutableStateFlow<List<SelectAccountModel>>(mutableListOf())
