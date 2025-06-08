@@ -40,6 +40,7 @@ import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.domain.model.SelectAccountModel
 import com.example.travelapp.ui.component.ButtonComponent
+import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
@@ -50,6 +51,7 @@ import com.example.travelapp.utils.resource.Dimens
 
 @Composable
 fun SelectAccountScreen(navController: NavController) {
+    ChangeStatusBarColor(isAppearanceLightStatusBars = true)
     BaseScreen(viewModel = hiltViewModel<SelectAccountViewModel>()) { viewModel ->
         val listAccountState = viewModel.listAccountState.collectAsState()
         val selectedAcc = viewModel.selectedAccountState.collectAsState()

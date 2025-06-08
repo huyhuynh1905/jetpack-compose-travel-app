@@ -32,6 +32,7 @@ import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.presentation.loginfeature.addaccount.support.TypeAddAccountEntity
 import com.example.travelapp.ui.component.ButtonComponent
+import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.navigation.LocalNavController
 import com.example.travelapp.ui.navigation.ScreenNames
@@ -42,6 +43,8 @@ import com.example.travelapp.utils.resource.Dimens
 
 @Composable
 fun AddAccountScreen() {
+    ChangeStatusBarColor(isAppearanceLightStatusBars = true)
+
     BaseScreen(viewModel = hiltViewModel<AddAccountViewModel>()) { viewModel ->
         val navController = LocalNavController.current
         val listType = viewModel.listTypeState.collectAsState()

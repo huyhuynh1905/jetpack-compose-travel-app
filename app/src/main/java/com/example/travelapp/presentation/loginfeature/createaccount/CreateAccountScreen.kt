@@ -4,42 +4,43 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.ui.component.ButtonComponent
+import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.TextFieldComponent
 import com.example.travelapp.ui.themes.gray
-import com.example.travelapp.ui.themes.redBg
 import com.example.travelapp.ui.themes.yellowOr
 import com.example.travelapp.utils.resource.Dimens
+import java.util.Locale
 
 @Composable
 fun CreateAccountScreen() {
+
+    ChangeStatusBarColor(isAppearanceLightStatusBars = true)
+
     BaseScreen(viewModel = hiltViewModel<CreateAccountViewModel>()) { viewModel ->
 
         var fullname by remember { mutableStateOf("") }
         var emailAdrress by remember { mutableStateOf("") }
+        var password by remember { mutableStateOf("") }
 
         Column(
             modifier = Modifier
@@ -69,7 +70,7 @@ fun CreateAccountScreen() {
                     color = gray
                 )
             )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
+            Spacer(modifier = Modifier.height(Dimens.pdLarger))
             //nội dung
             Column(
                 modifier = Modifier
@@ -80,59 +81,47 @@ fun CreateAccountScreen() {
                     onValueChange = { newValue ->
                         fullname = newValue
                     },
-                    label = stringResource(id = R.string.full_name)
+                    label = stringResource(id = R.string.full_name).toUpperCase(Locale.getDefault()),
+                    holder = "Alex Chan",
                 )
-                TextField(
-                    value = fullname,
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+
+                TextFieldComponent(
+                    value = emailAdrress,
                     onValueChange = { newValue ->
-                        fullname = newValue
+                        emailAdrress = newValue
                     },
-                    label = {
-                        Text("Enter text")
+                    label = stringResource(id = R.string.email_address).toUpperCase(Locale.getDefault()),
+                    holder = "alex@gmail.com",
+                    keyboardType = KeyboardType.Email
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+
+                TextFieldComponent(
+                    value = password,
+                    onValueChange = { newValue ->
+                        password = newValue
                     },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                            horizontal = Dimens.zero
-                        )
-                        .drawBehind {
-                            val strokeWidth = Dimens.normalLineHeight.toPx()
-                            val y = size.height - strokeWidth / 2
-                            drawLine(
-                                color = gray,
-                                start = Offset(0f, y),
-                                end = Offset(size.width, y),
-                                strokeWidth = strokeWidth
-                            )
-                    },
-                    singleLine = true,
-                    colors = TextFieldDefaults.colors(
-                        focusedTextColor = Color.Black,
-                        unfocusedTextColor = Color.Black,
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        focusedLabelColor = Color.Black,
-                        unfocusedLabelColor = Color.Black,
-                        cursorColor = redBg
-                    )
+                    label = stringResource(id = R.string.password).toUpperCase(Locale.getDefault()),
+                    holder = stringResource(id = R.string.password),
+                    imeAction = ImeAction.Done,
+                    visualTransformation = PasswordVisualTransformation()
                 )
 
-                OutlinedTextField(
-                    value = emailAdrress,
-                    onValueChange = {
-                        emailAdrress = it
-                    }, // "it" là newText
-                    label = { Text("Enter text (Outlined)") },
-                    modifier = Modifier.fillMaxWidth()
-                )
             }
 
             //Phần button ở dưới
             ButtonComponent(
                 text = stringResource(id = R.string.create_account_des),
                 onClick = {
+                    viewModel.createAccountAction(
+                        fullname,
+                        emailAdrress,
+                        password,
+                        onSucces = {
 
+                        }
+                    )
                 }
             )
             Spacer(modifier = Modifier.height(Dimens.pdSmaller))

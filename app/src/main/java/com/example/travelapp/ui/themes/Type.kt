@@ -16,6 +16,12 @@ val AppTypography = Typography(
         lineHeight = Dimens.textSizeSmall,
         letterSpacing = 0.5.sp
     ),
+    bodyMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = Dimens.textSizeNormal,
+        lineHeight = Dimens.textSizeNormal,
+    ),
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
