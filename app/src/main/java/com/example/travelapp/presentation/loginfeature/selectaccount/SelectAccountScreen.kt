@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
@@ -78,6 +77,7 @@ fun SelectAccountScreen(navController: NavController) {
                     fontSize = Dimens.textSizeSpecialLarge
                 )
             )
+            Spacer(modifier = Modifier.height(Dimens.pdNormal))
             Text(
                 text = stringResource(id = R.string.des_select_account),
                 style = MaterialTheme.typography.bodyMedium.copy(

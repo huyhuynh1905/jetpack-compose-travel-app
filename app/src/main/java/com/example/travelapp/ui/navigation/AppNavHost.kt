@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.travelapp.presentation.loginfeature.addaccount.AddAccountScreen
 import com.example.travelapp.presentation.loginfeature.createaccount.CreateAccountScreen
 import com.example.travelapp.presentation.loginfeature.selectaccount.SelectAccountScreen
+import com.example.travelapp.presentation.loginfeature.verifyaccount.VerifyAccountScreen
 import com.example.travelapp.presentation.onboard.OnBoardPageMain
 import com.example.travelapp.presentation.onboard.StartScreen
 import com.example.travelapp.presentation.sample.SampleScreen
@@ -42,6 +43,9 @@ fun AppNavHost() {
             }
             composable(ScreenNames.CREATE_ACC_SCREEN) {
                 CreateAccountScreen()
+            }
+            composable(ScreenNames.VERIFY_ACC_SCREEN) {
+                VerifyAccountScreen()
             }
         }
     }

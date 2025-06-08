@@ -26,6 +26,8 @@ import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.TextFieldComponent
+import com.example.travelapp.ui.navigation.LocalNavController
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.ui.themes.yellowOr
 import com.example.travelapp.utils.resource.Dimens
@@ -33,6 +35,7 @@ import java.util.Locale
 
 @Composable
 fun CreateAccountScreen() {
+    val nav = LocalNavController.current
 
     ChangeStatusBarColor(isAppearanceLightStatusBars = true)
 
@@ -64,6 +67,7 @@ fun CreateAccountScreen() {
                     fontSize = Dimens.textSizeSpecialLarge
                 )
             )
+            Spacer(modifier = Modifier.height(Dimens.pdNormal))
             Text(
                 text = stringResource(id = R.string.des_create_account),
                 style = MaterialTheme.typography.bodyMedium.copy(
@@ -119,7 +123,7 @@ fun CreateAccountScreen() {
                         emailAdrress,
                         password,
                         onSucces = {
-
+                            nav?.navigate(ScreenNames.VERIFY_ACC_SCREEN)
                         }
                     )
                 }

@@ -72,6 +72,7 @@ fun AddAccountScreen() {
                     fontSize = Dimens.textSizeSpecialLarge
                 )
             )
+            Spacer(modifier = Modifier.height(Dimens.pdNormal))
             Text(
                 text = stringResource(id = R.string.des_add_account),
                 style = MaterialTheme.typography.bodyMedium.copy(

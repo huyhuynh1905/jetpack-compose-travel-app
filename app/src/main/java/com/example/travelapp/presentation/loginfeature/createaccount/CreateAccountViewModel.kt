@@ -12,6 +12,6 @@ class CreateAccountViewModel @Inject constructor() : BaseViewModel() {
         onSucces: () -> Unit = {},
         onError: (String) -> Unit = {}
     ) {
-
+        onSucces()
     }
 }

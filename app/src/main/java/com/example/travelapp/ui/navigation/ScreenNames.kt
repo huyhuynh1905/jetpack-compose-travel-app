@@ -8,4 +8,5 @@ object ScreenNames {
     const val SELECT_ACC_SCREEN = "SELECT_ACC_SCREEN"
     const val ADD_ACC_SCREEN = "ADD_ACC_SCREEN"
     const val CREATE_ACC_SCREEN = "CREATE_ACC_SCREEN"
+    const val VERIFY_ACC_SCREEN = "VERIFY_ACC_SCREEN"
 }
