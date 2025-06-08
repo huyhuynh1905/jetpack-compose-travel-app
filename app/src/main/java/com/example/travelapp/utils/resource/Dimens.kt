@@ -52,6 +52,7 @@ object Dimens {
 
     //size
     val zero = 0.dp
+    val normalLineHeight = 1.dp
     val buttonHeight = 70.dp
     val appBarHeight = 40.dp
     val backButtonSize = 20.dp

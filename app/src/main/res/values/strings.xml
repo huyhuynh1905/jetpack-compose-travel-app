@@ -12,4 +12,10 @@
     <string name="add_google">Continue with Google</string>
     <string name="add_facebook">Continue with Facebook</string>
     <string name="add_user">Start with Email</string>
+    <string name="create_account">Create Account</string>
+    <string name="des_create_account">Just one more small step, let’s start\nwith your email</string>
+    <string name="full_name">Full name</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="create_account_des">Creat new Account</string>
 </resources>
