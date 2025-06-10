@@ -21,4 +21,6 @@
     <string name="verify_account">Verify Account</string>
     <string name="des_verify_account">We will send a message to your phone number\nfor verification</string>
     <string name="phone_number">Phone number</string>
+    <string name="message">Message</string>
+    <string name="please_input_your_infomation">Please input your infomation!</string>
 </resources>

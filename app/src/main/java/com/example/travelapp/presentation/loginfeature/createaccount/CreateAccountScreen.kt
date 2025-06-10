@@ -6,14 +6,19 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -22,6 +27,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
+import com.example.travelapp.presentation.loginfeature.createaccount.support.DialogDisplayState
+import com.example.travelapp.presentation.loginfeature.createaccount.support.DialogScreenEvent
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
@@ -41,9 +48,12 @@ fun CreateAccountScreen() {
 
     BaseScreen(viewModel = hiltViewModel<CreateAccountViewModel>()) { viewModel ->
 
-        var fullname by remember { mutableStateOf("") }
-        var emailAdrress by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
+        var fullname by rememberSaveable { mutableStateOf("") }
+        var emailAdrress by rememberSaveable { mutableStateOf("") }
+        var password by rememberSaveable { mutableStateOf("") }
+
+        val eventDialogState by viewModel.dialogState.collectAsState()
+        val localContext = LocalContext.current
 
         Column(
             modifier = Modifier
@@ -123,12 +133,60 @@ fun CreateAccountScreen() {
                         emailAdrress,
                         password,
                         onSucces = {
-                            nav?.navigate(ScreenNames.VERIFY_ACC_SCREEN)
+                            if(fullname.isNotBlank() && emailAdrress.isNotBlank() && password.isNotBlank()){
+                                nav?.navigate(ScreenNames.VERIFY_ACC_SCREEN)
+                            } else {
+                                viewModel.onEvent(DialogScreenEvent.ShowDialogButtonClicked(
+                                    title = localContext.getString(R.string.message),
+                                    message = localContext.getString(R.string.please_input_your_infomation)
+                                ))
+                            }
+
                         }
                     )
                 }
             )
             Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+        }
+
+        ///handler dialog
+        when(val state = eventDialogState){
+            is DialogDisplayState.Hidden -> {
+
+            }
+            is DialogDisplayState.Showing -> {
+                // Hiển thị dialog
+                AlertDialog(
+                    onDismissRequest = {
+                        // Được gọi khi người dùng nhấp ra ngoài dialog hoặc nhấn nút back
+                        viewModel.onEvent(DialogScreenEvent.DismissDialog)
+                    },
+                    title = {
+                        Text(text = state.title)
+                    },
+                    text = {
+                        Text(text = state.message)
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                viewModel.onEvent(DialogScreenEvent.ConfirmDialog)
+                            }
+                        ) {
+                            Text("Confirm")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(
+                            onClick = {
+                                viewModel.onEvent(DialogScreenEvent.DismissDialog)
+                            }
+                        ) {
+                            Text("Dismiss")
+                        }
+                    }
+                )
+            }
         }
     }
 }
