@@ -53,6 +53,7 @@ object Dimens {
     //size
     val zero = 0.dp
     val normalLineHeight = 1.dp
+    val buttonSmallHeight = 50.dp
     val buttonHeight = 70.dp
     val appBarHeight = 40.dp
     val backButtonSize = 20.dp
@@ -63,6 +64,7 @@ object Dimens {
     val sizeAddAccount = 30.dp
     val widthFlagDropdown = 100.dp
     val heightFlagDropdown = 300.dp
+    val iconDialogSize = 100.dp
 
 
     //diff

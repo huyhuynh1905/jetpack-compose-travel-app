@@ -6,15 +6,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -31,6 +28,7 @@ import com.example.travelapp.presentation.loginfeature.createaccount.support.Dia
 import com.example.travelapp.presentation.loginfeature.createaccount.support.DialogScreenEvent
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.ChangeStatusBarColor
+import com.example.travelapp.ui.component.DialogComponent
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.TextFieldComponent
 import com.example.travelapp.ui.navigation.LocalNavController
@@ -156,35 +154,13 @@ fun CreateAccountScreen() {
             }
             is DialogDisplayState.Showing -> {
                 // Hiển thị dialog
-                AlertDialog(
-                    onDismissRequest = {
-                        // Được gọi khi người dùng nhấp ra ngoài dialog hoặc nhấn nút back
+                DialogComponent(
+                    showDialog = true,
+                    title = state.title,
+                    message = state.message,
+                    onDismiss = {
                         viewModel.onEvent(DialogScreenEvent.DismissDialog)
                     },
-                    title = {
-                        Text(text = state.title)
-                    },
-                    text = {
-                        Text(text = state.message)
-                    },
-                    confirmButton = {
-                        TextButton(
-                            onClick = {
-                                viewModel.onEvent(DialogScreenEvent.ConfirmDialog)
-                            }
-                        ) {
-                            Text("Confirm")
-                        }
-                    },
-                    dismissButton = {
-                        TextButton(
-                            onClick = {
-                                viewModel.onEvent(DialogScreenEvent.DismissDialog)
-                            }
-                        ) {
-                            Text("Dismiss")
-                        }
-                    }
                 )
             }
         }
