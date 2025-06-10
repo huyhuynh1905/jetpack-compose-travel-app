@@ -65,7 +65,7 @@ fun TextFieldComponent(
             singleLine = singleLine,
             maxLines = maxLines,
             cursorBrush = SolidColor(redBg), // Màu con trỏ
-            visualTransformation = visualTransformation, //format pass
+            visualTransformation = visualTransformation, //format
             decorationBox = { innerTextField ->
                 Column {
                     // Box chứa label và innerTextField để kiểm soát padding

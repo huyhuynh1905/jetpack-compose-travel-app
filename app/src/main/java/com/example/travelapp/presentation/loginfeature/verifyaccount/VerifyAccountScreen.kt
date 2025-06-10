@@ -33,6 +33,7 @@ import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.TextFieldComponent
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.ui.themes.yellowOr
+import com.example.travelapp.utils.extension.PhoneNumberVisualTransformation
 import com.example.travelapp.utils.resource.Dimens
 import java.util.Locale
 
@@ -46,6 +47,8 @@ fun VerifyAccountScreen() {
 
         val listLocale by viewModel.listState.collectAsState()
         val selectedLocale by viewModel.selectState.collectAsState()
+
+        val maxDigits = 10
 
         Column(
             modifier = Modifier
@@ -105,12 +108,16 @@ fun VerifyAccountScreen() {
                     TextFieldComponent(
                         value = phoneNumber,
                         onValueChange = { newValue ->
-                            phoneNumber = newValue
+                            val digitsOnly = newValue.filter { it.isDigit() }
+                            if (digitsOnly.length <= maxDigits) {
+                                phoneNumber = digitsOnly
+                            }
                         },
                         isShowBottomLine = false,
                         keyboardType = KeyboardType.Phone,
                         imeAction = ImeAction.Done,
-                        holder = stringResource(id = R.string.phone_number)
+                        holder = stringResource(id = R.string.phone_number),
+                        visualTransformation = PhoneNumberVisualTransformation()
                     )
                 }
                 HorizontalDivider(
