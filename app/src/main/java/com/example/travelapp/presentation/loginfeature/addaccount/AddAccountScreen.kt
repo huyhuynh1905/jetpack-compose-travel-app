@@ -31,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.presentation.loginfeature.addaccount.support.TypeAddAccountEntity
+import com.example.travelapp.ui.component.AppBarComponent
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
@@ -45,66 +46,75 @@ import com.example.travelapp.utils.resource.Dimens
 fun AddAccountScreen() {
     ChangeStatusBarColor(isAppearanceLightStatusBars = true)
 
-    BaseScreen(viewModel = hiltViewModel<AddAccountViewModel>()) { viewModel ->
+    BaseScreen(viewModel = hiltViewModel<AddAccountViewModel>(), isSafeArea = false) { viewModel ->
         val navController = LocalNavController.current
         val listType = viewModel.listTypeState.collectAsState()
         val typeSelect = viewModel.selectTypeAddState.collectAsState()
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    vertical = Dimens.pdNormal,
-                    horizontal = Dimens.pdLarge
-                )
-        ){
-            //phần hiển thị thông tin
-            Spacer(modifier = Modifier.height(Dimens.pdBig*3))
-            Image(
-                painter = painterResource(id = R.drawable.ic_vali),
-                contentDescription = null,
+                .background(Color.White)
+        ) {
+            AppBarComponent(
+                title = "",
+                navController = navController!!
             )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            Text(
-                text = stringResource(id = R.string.add_account),
-                style = MaterialTheme.typography.titleLarge.copy(
-                    color = yellowOr,
-                    fontSize = Dimens.textSizeSpecialLarge
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            Text(
-                text = stringResource(id = R.string.des_add_account),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = gray
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            //nội dung
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .weight(1f)
-            ) {
-                items(listType.value.size) { index ->
-                    TypeLoginItem(
-                        model = listType.value[index],
-                        typeSelect = typeSelect.value,
-                        click = { item ->
-                            viewModel.showLog("SelectAccountItem click: ${item.title}")
-                            viewModel.onChangeSelectedTypeAcc(item)
-                        }
+                    .fillMaxSize()
+                    .padding(
+                        vertical = Dimens.pdNormal,
+                        horizontal = Dimens.pdLarge
                     )
+            ) {
+                //phần hiển thị thông tin
+                Spacer(modifier = Modifier.height(Dimens.pdBig))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_vali),
+                    contentDescription = null,
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                Text(
+                    text = stringResource(id = R.string.add_account),
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        color = yellowOr,
+                        fontSize = Dimens.textSizeSpecialLarge
+                    )
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                Text(
+                    text = stringResource(id = R.string.des_add_account),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = gray
+                    )
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                //nội dung
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    items(listType.value.size) { index ->
+                        TypeLoginItem(
+                            model = listType.value[index],
+                            typeSelect = typeSelect.value,
+                            click = { item ->
+                                viewModel.showLog("SelectAccountItem click: ${item.title}")
+                                viewModel.onChangeSelectedTypeAcc(item)
+                            }
+                        )
+                    }
                 }
-            }
 
-            //Phần button ở dưới
-            ButtonComponent(
-                text = "Next",
-                onClick = {
-                    navController?.navigate(ScreenNames.CREATE_ACC_SCREEN)
-                }
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+                //Phần button ở dưới
+                ButtonComponent(
+                    text = "Next",
+                    onClick = {
+                        navController?.navigate(ScreenNames.CREATE_ACC_SCREEN)
+                    }
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+            }
         }
     }
 }
@@ -141,7 +151,7 @@ fun TypeLoginItem(
                     modifier = Modifier
                         .size(Dimens.sizeAvatarLogin)
                         .clip(RoundedCornerShape(Dimens.radiusMedium))
-                        .background(model.bgkColor?:Color.White)
+                        .background(model.bgkColor ?: Color.White)
                         .padding(Dimens.pdNormal),
                 )
                 Spacer(modifier = Modifier.width(Dimens.pdNormal))

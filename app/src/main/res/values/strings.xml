@@ -23,4 +23,6 @@
     <string name="phone_number">Phone number</string>
     <string name="message">Message</string>
     <string name="please_input_your_infomation">Please input your infomation!</string>
+    <string name="phone_number_pin_des">Enter the 4 numbers we sent to the phone\nnumber to verify.</string>
+    <string name="resend">Resend</string>
 </resources>

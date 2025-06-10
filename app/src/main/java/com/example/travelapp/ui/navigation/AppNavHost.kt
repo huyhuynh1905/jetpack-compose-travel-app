@@ -11,6 +11,7 @@ import com.example.travelapp.presentation.loginfeature.addaccount.AddAccountScre
 import com.example.travelapp.presentation.loginfeature.createaccount.CreateAccountScreen
 import com.example.travelapp.presentation.loginfeature.selectaccount.SelectAccountScreen
 import com.example.travelapp.presentation.loginfeature.verifyaccount.VerifyAccountScreen
+import com.example.travelapp.presentation.loginfeature.verifypin.VerifyPinCodeScreen
 import com.example.travelapp.presentation.onboard.OnBoardPageMain
 import com.example.travelapp.presentation.onboard.StartScreen
 import com.example.travelapp.presentation.sample.SampleScreen
@@ -46,6 +47,9 @@ fun AppNavHost() {
             }
             composable(ScreenNames.VERIFY_ACC_SCREEN) {
                 VerifyAccountScreen()
+            }
+            composable(ScreenNames.PIN_VERIFY_ACC_SCREEN) {
+                VerifyPinCodeScreen()
             }
         }
     }

@@ -38,6 +38,7 @@ import coil3.compose.AsyncImage
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.domain.model.SelectAccountModel
+import com.example.travelapp.ui.component.AppBarComponent
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.ChangeStatusBarColor
 import com.example.travelapp.ui.component.Pixel6APreview
@@ -51,77 +52,87 @@ import com.example.travelapp.utils.resource.Dimens
 @Composable
 fun SelectAccountScreen(navController: NavController) {
     ChangeStatusBarColor(isAppearanceLightStatusBars = true)
-    BaseScreen(viewModel = hiltViewModel<SelectAccountViewModel>()) { viewModel ->
+    BaseScreen(
+        viewModel = hiltViewModel<SelectAccountViewModel>(),
+        background = Color.White,
+        isSafeArea = false
+    ) { viewModel ->
         val listAccountState = viewModel.listAccountState.collectAsState()
         val selectedAcc = viewModel.selectedAccountState.collectAsState()
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    vertical = Dimens.pdNormal,
-                    horizontal = Dimens.pdLarge
-                )
-        ) {
-            //phần hiển thị thông tin
-            Spacer(modifier = Modifier.height(Dimens.pdBig*3))
-            Image(
-                painter = painterResource(id = R.drawable.ic_plane),
-                contentDescription = null,
+        Column {
+            AppBarComponent(
+                title = "",
+                navController = navController
             )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            Text(
-                text = stringResource(id = R.string.hello_there),
-                style = MaterialTheme.typography.titleLarge.copy(
-                    color = yellowOr,
-                    fontSize = Dimens.textSizeSpecialLarge
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            Text(
-                text = stringResource(id = R.string.des_select_account),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = gray
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-
-            //phần hiển thị list item
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .weight(1f)
+                    .fillMaxSize()
+                    .padding(
+                        vertical = Dimens.pdNormal,
+                        horizontal = Dimens.pdLarge
+                    )
             ) {
-                items(listAccountState.value.size) { index ->
-                    SelectAccountItem(
-                        selectAccountModel = listAccountState.value[index],
-                        selectedAcc = selectedAcc.value,
-                        click = { item ->
-                            viewModel.showLog("SelectAccountItem click: ${item.name}")
-                            viewModel.onChangeSelectedAcc(item)
-                        }
+                //phần hiển thị thông tin
+                Spacer(modifier = Modifier.height(Dimens.pdBig))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_plane),
+                    contentDescription = null,
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                Text(
+                    text = stringResource(id = R.string.hello_there),
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        color = yellowOr,
+                        fontSize = Dimens.textSizeSpecialLarge
                     )
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                Text(
+                    text = stringResource(id = R.string.des_select_account),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = gray
+                    )
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
+
+                //phần hiển thị list item
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    items(listAccountState.value.size) { index ->
+                        SelectAccountItem(
+                            selectAccountModel = listAccountState.value[index],
+                            selectedAcc = selectedAcc.value,
+                            click = { item ->
+                                viewModel.showLog("SelectAccountItem click: ${item.name}")
+                                viewModel.onChangeSelectedAcc(item)
+                            }
+                        )
+                    }
+
+                    // Bọc AddAccountItem trong một item block
+                    item(key = "add_account_button") { // Cung cấp một key cố định cho item này
+                        AddAccountItem(
+                            click = {
+                                viewModel.showLog("AddAccountItem click")
+                                navController.navigate(ScreenNames.ADD_ACC_SCREEN)
+                            }
+                        )
+                    }
+
                 }
 
-                // Bọc AddAccountItem trong một item block
-                item(key = "add_account_button") { // Cung cấp một key cố định cho item này
-                    AddAccountItem(
-                        click = {
-                            viewModel.showLog("AddAccountItem click")
-                            navController.navigate(ScreenNames.ADD_ACC_SCREEN)
-                        }
-                    )
-                }
-
+                //Phần button ở dưới
+                ButtonComponent(
+                    text = "Next",
+                    onClick = {
+                        navController.navigate(ScreenNames.ADD_ACC_SCREEN)
+                    }
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdSmaller))
             }
-
-            //Phần button ở dưới
-            ButtonComponent(
-                text = "Next",
-                onClick = {
-                    navController.navigate(ScreenNames.ADD_ACC_SCREEN)
-                }
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdSmaller))
         }
     }
 }

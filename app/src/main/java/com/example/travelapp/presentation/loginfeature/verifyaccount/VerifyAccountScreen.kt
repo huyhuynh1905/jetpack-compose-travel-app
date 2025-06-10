@@ -28,9 +28,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.presentation.loginfeature.verifyaccount.support.DropdownCustom
+import com.example.travelapp.ui.component.AppBarComponent
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.TextFieldComponent
+import com.example.travelapp.ui.navigation.LocalNavController
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.ui.themes.yellowOr
 import com.example.travelapp.utils.extension.PhoneNumberVisualTransformation
@@ -40,6 +43,7 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VerifyAccountScreen() {
+    val navController = LocalNavController.current
     BaseScreen(viewModel = hiltViewModel<VerifyAccountViewModel>()) { viewModel ->
 
         var phoneNumber by remember { mutableStateOf("") }
@@ -50,89 +54,95 @@ fun VerifyAccountScreen() {
 
         val maxDigits = 10
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    vertical = Dimens.pdNormal,
-                    horizontal = Dimens.pdLarge,
-                )
-        ){
-            //phần hiển thị thông tin
-            Spacer(modifier = Modifier.height(Dimens.pdBig*3))
-            Image(
-                painter = painterResource(id = R.drawable.ic_phone_verify),
-                contentDescription = null,
+        Column {
+            AppBarComponent(
+                title = "",
+                navController = navController!!
             )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            Text(
-                text = stringResource(id = R.string.verify_account),
-                style = MaterialTheme.typography.titleLarge.copy(
-                    color = yellowOr,
-                    fontSize = Dimens.textSizeSpecialLarge
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdNormal))
-            Text(
-                text = stringResource(id = R.string.des_verify_account),
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = gray
-                )
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdLarger))
-
-
             Column(
                 modifier = Modifier
-                    .weight(1f)
+                    .fillMaxSize()
+                    .padding(
+                        vertical = Dimens.pdNormal,
+                        horizontal = Dimens.pdLarge,
+                    )
             ) {
+                //phần hiển thị thông tin
+                Spacer(modifier = Modifier.height(Dimens.pdBig))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_phone_verify),
+                    contentDescription = null,
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdNormal))
                 Text(
-                    text = stringResource(id = R.string.phone_number).toUpperCase(Locale.ROOT),
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = gray
+                    text = stringResource(id = R.string.verify_account),
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        color = yellowOr,
+                        fontSize = Dimens.textSizeSpecialLarge
                     )
                 )
                 Spacer(modifier = Modifier.height(Dimens.pdNormal))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    DropdownCustom(
-                        datas = listLocale,
-                        onItemSelected = { item ->
-                            viewModel.updateLocaleType(item)
-                        },
-                        selectData = selectedLocale!!
+                Text(
+                    text = stringResource(id = R.string.des_verify_account),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = gray
                     )
-                    Spacer(modifier = Modifier.width(Dimens.pdMedium))
-
-                    TextFieldComponent(
-                        value = phoneNumber,
-                        onValueChange = { newValue ->
-                            val digitsOnly = newValue.filter { it.isDigit() }
-                            if (digitsOnly.length <= maxDigits) {
-                                phoneNumber = digitsOnly
-                            }
-                        },
-                        isShowBottomLine = false,
-                        keyboardType = KeyboardType.Phone,
-                        imeAction = ImeAction.Done,
-                        holder = stringResource(id = R.string.phone_number),
-                        visualTransformation = PhoneNumberVisualTransformation()
-                    )
-                }
-                HorizontalDivider(
-                    thickness = Dimens.normalLineHeight,
-                    color = gray
                 )
-            }
+                Spacer(modifier = Modifier.height(Dimens.pdLarger))
 
-            ButtonComponent(
-                text = "Verify",
-                onClick = {
 
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.phone_number).toUpperCase(Locale.ROOT),
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = gray
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        DropdownCustom(
+                            datas = listLocale,
+                            onItemSelected = { item ->
+                                viewModel.updateLocaleType(item)
+                            },
+                            selectData = selectedLocale!!
+                        )
+                        Spacer(modifier = Modifier.width(Dimens.pdMedium))
+
+                        TextFieldComponent(
+                            value = phoneNumber,
+                            onValueChange = { newValue ->
+                                val digitsOnly = newValue.filter { it.isDigit() }
+                                if (digitsOnly.length <= maxDigits) {
+                                    phoneNumber = digitsOnly
+                                }
+                            },
+                            isShowBottomLine = false,
+                            keyboardType = KeyboardType.Phone,
+                            imeAction = ImeAction.Done,
+                            holder = stringResource(id = R.string.phone_number),
+                            visualTransformation = PhoneNumberVisualTransformation()
+                        )
+                    }
+                    HorizontalDivider(
+                        thickness = Dimens.normalLineHeight,
+                        color = gray
+                    )
                 }
-            )
-            Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+
+                ButtonComponent(
+                    text = "Verify",
+                    onClick = {
+                        navController.navigate(ScreenNames.PIN_VERIFY_ACC_SCREEN)
+                    }
+                )
+                Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+            }
         }
     }
 }
