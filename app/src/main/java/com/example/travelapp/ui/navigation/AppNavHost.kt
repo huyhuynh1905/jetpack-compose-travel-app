@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.travelapp.presentation.loginfeature.addaccount.AddAccountScreen
 import com.example.travelapp.presentation.loginfeature.createaccount.CreateAccountScreen
+import com.example.travelapp.presentation.loginfeature.loginsuccess.LoginSuccessScreen
 import com.example.travelapp.presentation.loginfeature.selectaccount.SelectAccountScreen
 import com.example.travelapp.presentation.loginfeature.verifyaccount.VerifyAccountScreen
 import com.example.travelapp.presentation.loginfeature.verifypin.VerifyPinCodeScreen
@@ -50,6 +51,9 @@ fun AppNavHost() {
             }
             composable(ScreenNames.PIN_VERIFY_ACC_SCREEN) {
                 VerifyPinCodeScreen()
+            }
+            composable(ScreenNames.LOGIN_SUCCESS_SCREEN) {
+                LoginSuccessScreen()
             }
         }
     }

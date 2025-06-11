@@ -32,6 +32,7 @@ import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.OtpInputField
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.navigation.LocalNavController
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.ui.themes.redBg
 import com.example.travelapp.ui.themes.yellowOr
@@ -111,12 +112,19 @@ fun VerifyPinCodeScreen() {
                 }
 
                 ButtonComponent(
-                    text = "Verify",
+                    text = stringResource(id = R.string.verify),
                     onClick = {
-
+                        nav.navigate(ScreenNames.LOGIN_SUCCESS_SCREEN) {
+                            // Xóa SplashScreen khỏi backstack
+                            popUpTo(0) {
+                                inclusive = true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa
+                            }
+                            // Tùy chọn: Đảm bảo không tạo nhiều instance của HomeScreen nếu nó đã ở trên cùng
+                            launchSingleTop = true
+                        }
                     }
                 )
-                Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+                Spacer(modifier = Modifier.height(Dimens.pdSmaller + Dimens.navSysBarHeight))
             }
         }
     }

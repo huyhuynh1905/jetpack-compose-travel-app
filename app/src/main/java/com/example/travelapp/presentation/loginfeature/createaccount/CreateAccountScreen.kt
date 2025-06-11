@@ -1,12 +1,15 @@
 package com.example.travelapp.presentation.loginfeature.createaccount
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,47 +63,49 @@ fun CreateAccountScreen() {
         val eventDialogState by viewModel.dialogState.collectAsState()
         val localContext = LocalContext.current
 
-        Column {
-            AppBarComponent(
-                title = "",
-                navController = nav!!
-            )
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        vertical = Dimens.pdNormal,
-                        horizontal = Dimens.pdLarge
-                    )
-                    .imePadding()
-            ) {
-                //phần hiển thị thông tin
-                Spacer(modifier = Modifier.height(Dimens.pdBig))
-                Image(
-                    painter = painterResource(id = R.drawable.ic_mess_heart),
-                    contentDescription = null,
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .imePadding()
+        ) {
+            Column {
+                AppBarComponent(
+                    title = "",
+                    navController = nav!!
                 )
-                Spacer(modifier = Modifier.height(Dimens.pdNormal))
-                Text(
-                    text = stringResource(id = R.string.create_account),
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        color = yellowOr,
-                        fontSize = Dimens.textSizeSpecialLarge
-                    )
-                )
-                Spacer(modifier = Modifier.height(Dimens.pdNormal))
-                Text(
-                    text = stringResource(id = R.string.des_create_account),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        color = gray
-                    )
-                )
-                Spacer(modifier = Modifier.height(Dimens.pdLarger))
-                //nội dung
                 Column(
                     modifier = Modifier
                         .weight(1f)
+                        .padding(
+                            top = Dimens.pdNormal,
+                            start = Dimens.pdLarge,
+                            end = Dimens.pdLarge
+                        )
+                        .verticalScroll(rememberScrollState())
                 ) {
+                    //phần hiển thị thông tin
+                    Spacer(modifier = Modifier.height(Dimens.pdBig))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_mess_heart),
+                        contentDescription = null,
+                    )
+                    Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                    Text(
+                        text = stringResource(id = R.string.create_account),
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            color = yellowOr,
+                            fontSize = Dimens.textSizeSpecialLarge
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(Dimens.pdNormal))
+                    Text(
+                        text = stringResource(id = R.string.des_create_account),
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            color = gray
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(Dimens.pdLarger))
+                    //nội dung
                     TextFieldComponent(
                         value = fullname,
                         onValueChange = { newValue ->
@@ -132,34 +137,42 @@ fun CreateAccountScreen() {
                         imeAction = ImeAction.Done,
                         visualTransformation = PasswordVisualTransformation()
                     )
-
                 }
-
                 //Phần button ở dưới
-                ButtonComponent(
-                    text = stringResource(id = R.string.create_account_des),
-                    onClick = {
-                        viewModel.createAccountAction(
-                            fullname,
-                            emailAdrress,
-                            password,
-                            onSucces = {
-                                if (fullname.isNotBlank() && emailAdrress.isNotBlank() && password.isNotBlank()) {
-                                    nav?.navigate(ScreenNames.VERIFY_ACC_SCREEN)
-                                } else {
-                                    viewModel.onEvent(
-                                        DialogScreenEvent.ShowDialogButtonClicked(
-                                            title = localContext.getString(R.string.message),
-                                            message = localContext.getString(R.string.please_input_your_infomation)
-                                        )
-                                    )
-                                }
-
-                            }
+                Box(
+                    modifier = Modifier
+                        .padding(
+                            top = Dimens.pdNormal,
+                            start = Dimens.pdLarge,
+                            end = Dimens.pdLarge,
+                            bottom = Dimens.pdNormal,
                         )
-                    }
-                )
-                Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+                ) {
+                    ButtonComponent(
+                        text = stringResource(id = R.string.create_account_des),
+                        onClick = {
+                            viewModel.createAccountAction(
+                                fullname,
+                                emailAdrress,
+                                password,
+                                onSucces = {
+                                    if (fullname.isNotBlank() && emailAdrress.isNotBlank() && password.isNotBlank()) {
+                                        nav.navigate(ScreenNames.VERIFY_ACC_SCREEN)
+                                    } else {
+                                        viewModel.onEvent(
+                                            DialogScreenEvent.ShowDialogButtonClicked(
+                                                title = localContext.getString(R.string.message),
+                                                message = localContext.getString(R.string.please_input_your_infomation)
+                                            )
+                                        )
+                                    }
+
+                                }
+                            )
+                        }
+                    )
+                }
+                Spacer(modifier = Modifier.height(Dimens.pdSmaller + Dimens.navSysBarHeight))
             }
         }
 

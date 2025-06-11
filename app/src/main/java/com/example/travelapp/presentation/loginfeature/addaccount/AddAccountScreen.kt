@@ -113,7 +113,7 @@ fun AddAccountScreen() {
                         navController?.navigate(ScreenNames.CREATE_ACC_SCREEN)
                     }
                 )
-                Spacer(modifier = Modifier.height(Dimens.pdSmaller))
+                Spacer(modifier = Modifier.height(Dimens.pdSmaller + Dimens.navSysBarHeight))
             }
         }
     }
