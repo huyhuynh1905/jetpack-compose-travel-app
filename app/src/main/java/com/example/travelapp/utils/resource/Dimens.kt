@@ -42,6 +42,8 @@ object Dimens {
     val textSizeLarge = 20.sp
     val textSizeLargest = 24.sp
     val textSizeSpecialLarge = 30.sp
+    val textSizeSpecialLarger = 35.sp
+    val textSizeSpecialLargest = 40.sp
 
     // Elevation
     val elevationNormal = 1.dp

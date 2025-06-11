@@ -27,4 +27,7 @@
     <string name="resend">Resend</string>
     <string name="verify">Verify</string>
     <string name="next">Next</string>
+    <string name="start_new_journey">Start new journey</string>
+    <string name="logged_in_successfully">Logged in\nsuccessfully</string>
+    <string name="we_have_prepared_information_for_your_journey">We have prepared information for your journey</string>
 </resources>
