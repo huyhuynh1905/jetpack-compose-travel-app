@@ -13,6 +13,7 @@ hiltCompose = "1.2.0"
 ksp = "2.1.21-2.0.1"
 navigationCompose = "2.9.0" # Check for the latest compatible version
 coil = "3.2.0"
+roomversion = "2.7.1"
 
 
 [libraries]
@@ -39,7 +40,11 @@ coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref 
 coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil"}
 #diff
 androidx-navigation-compose-jvmstubs = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-
+#room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomversion"}
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomversion"}
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomversion"}
+room-paging = { group = "androidx.room", name = "room-paging", version.ref = "roomversion"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

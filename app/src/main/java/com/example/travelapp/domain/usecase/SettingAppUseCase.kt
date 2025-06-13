@@ -1,5 +1,6 @@
 package com.example.travelapp.domain.usecase
 
+import com.example.travelapp.domain.base.BaseUseCase
 import com.example.travelapp.domain.repository.SettingAppRepository
 import javax.inject.Inject
 

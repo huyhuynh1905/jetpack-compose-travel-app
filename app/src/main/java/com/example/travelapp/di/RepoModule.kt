@@ -1,7 +1,11 @@
 package com.example.travelapp.di
 
 import android.content.SharedPreferences
+import com.example.travelapp.data.local.database.dao.AccountDao
+import com.example.travelapp.data.mapper.AccountMapper
+import com.example.travelapp.data.repository.AccountRepoImpl
 import com.example.travelapp.data.repository.SettingAppRepoImpl
+import com.example.travelapp.domain.repository.AccountRepository
 import com.example.travelapp.domain.repository.SettingAppRepository
 import dagger.Module
 import dagger.Provides
@@ -20,5 +24,12 @@ object RepoModule {
     ): SettingAppRepository {
         return SettingAppRepoImpl(sharedPreferences)
     }
+
+    @Provides
+    @Singleton
+    fun provideAccountRepository(accountDao: AccountDao, accountMapper: AccountMapper): AccountRepository {
+        return AccountRepoImpl(accountDao, accountMapper)
+    }
+
 
 }
