@@ -19,7 +19,7 @@ object RepoModule {
 
     @Provides
     @Singleton
-    fun settingAppRepository(
+    fun settingAppRepository25(
         sharedPreferences: SharedPreferences,
     ): SettingAppRepository {
         return SettingAppRepoImpl(sharedPreferences)

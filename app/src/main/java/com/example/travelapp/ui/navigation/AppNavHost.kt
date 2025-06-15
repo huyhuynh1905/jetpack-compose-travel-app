@@ -13,6 +13,7 @@ import com.example.travelapp.presentation.loginfeature.loginsuccess.LoginSuccess
 import com.example.travelapp.presentation.loginfeature.selectaccount.SelectAccountScreen
 import com.example.travelapp.presentation.loginfeature.verifyaccount.VerifyAccountScreen
 import com.example.travelapp.presentation.loginfeature.verifypin.VerifyPinCodeScreen
+import com.example.travelapp.presentation.mainfeature.homescreen.HomeScreen
 import com.example.travelapp.presentation.onboard.OnBoardPageMain
 import com.example.travelapp.presentation.onboard.StartScreen
 import com.example.travelapp.presentation.sample.SampleScreen
@@ -24,7 +25,7 @@ val LocalNavController = staticCompositionLocalOf<NavController?> { null }
 fun AppNavHost() {
     val navController = rememberNavController()
     CompositionLocalProvider(LocalNavController provides navController) {
-        NavHost(navController = navController, startDestination = ScreenNames.SPLASH_SCREEN) {
+        NavHost(navController = navController, startDestination = ScreenNames.HOME_SCREEN) { //SPLASH_SCREEN
             composable(ScreenNames.SPLASH_SCREEN) {
                 SplashScreen(navController)
             }
@@ -54,6 +55,9 @@ fun AppNavHost() {
             }
             composable(ScreenNames.LOGIN_SUCCESS_SCREEN) {
                 LoginSuccessScreen()
+            }
+            composable(ScreenNames.HOME_SCREEN) {
+                HomeScreen()
             }
         }
     }

@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.travelapp.data.base.BaseEntity
 
 @Entity(tableName = "account")
-class AccountEntity(
+data class AccountEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     var name: String = "",
@@ -13,4 +13,4 @@ class AccountEntity(
     var email: String = "",
     var avatarUrl: String = ""
 
-) : BaseEntity()
+)

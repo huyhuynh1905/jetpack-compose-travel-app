@@ -9,7 +9,8 @@ import com.example.travelapp.data.local.entity.AccountEntity
 
 @Database(
     entities = [AccountEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class RoomDB : RoomDatabase(){
 
