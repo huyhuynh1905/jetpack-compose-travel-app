@@ -11,8 +11,13 @@ class AccountRepoImpl @Inject constructor(
     private val accountMapper: AccountMapper
 ) : AccountRepository {
 
-    override suspend fun getAccount(): AccountModel? {
-        val acc = accountDao.getAccountById(1)
+    override suspend fun getAccount(id: Long): AccountModel? {
+        val acc = accountDao.getAccountById(id)
         return accountMapper.toModel(acc)
+    }
+
+    override suspend fun insertAccount(account: AccountModel): Long {
+        val acc = accountMapper.toEntity(account)
+        return accountDao.insertAccount(acc)
     }
 }

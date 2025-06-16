@@ -1,17 +1,26 @@
 package com.example.travelapp.presentation.splash
 
+import androidx.lifecycle.viewModelScope
 import com.example.travelapp.base.screen.BaseViewModel
+import com.example.travelapp.domain.model.AccountModel
+import com.example.travelapp.domain.usecase.AccountUseCase
 import com.example.travelapp.domain.usecase.SettingAppUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val settingAppUseCase: SettingAppUseCase
+    private val settingAppUseCase: SettingAppUseCase,
+    private val accountUseCase: AccountUseCase
 ) : BaseViewModel() {
 
+    var acc : AccountModel? = null
+
     init {
-        showLog("SplashViewModel init call")
+        showLog("SplashViewModel init call start")
+        getAccount()
+        showLog("SplashViewModel init call end")
     }
 
     fun isFirstOpen(): Boolean {
@@ -19,4 +28,11 @@ class SplashViewModel @Inject constructor(
         return settingAppUseCase.isFirstOpen()
     }
 
+    fun getAccount(){
+        viewModelScope.launch {
+            acc = accountUseCase.getAccount(1)
+            showLog("SplashViewModel init getAccount done")
+        }
+
+    }
 }

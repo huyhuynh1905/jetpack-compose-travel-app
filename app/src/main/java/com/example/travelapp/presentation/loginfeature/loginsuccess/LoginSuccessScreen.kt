@@ -25,11 +25,14 @@ import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.ui.component.ButtonComponent
 import com.example.travelapp.ui.component.Pixel6APreview
+import com.example.travelapp.ui.navigation.LocalNavController
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.yelDark
 import com.example.travelapp.utils.resource.Dimens
 
 @Composable
 fun LoginSuccessScreen() {
+    val navController = LocalNavController.current
     BaseScreen(
         viewModel = hiltViewModel<LoginSuccessViewModel>(),
         background = Color.White,
@@ -119,7 +122,14 @@ fun LoginSuccessScreen() {
                     ButtonComponent(
                         text = stringResource(R.string.start_new_journey),
                         onClick = {
-
+                            viewModel.saveAccount(onSuccess = {
+                                navController?.navigate(ScreenNames.HOME_SCREEN){
+                                    popUpTo(0){
+                                        inclusive = true
+                                    }
+                                    launchSingleTop = true
+                                }
+                            })
                         }
                     )
                 }

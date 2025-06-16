@@ -25,7 +25,7 @@ val LocalNavController = staticCompositionLocalOf<NavController?> { null }
 fun AppNavHost() {
     val navController = rememberNavController()
     CompositionLocalProvider(LocalNavController provides navController) {
-        NavHost(navController = navController, startDestination = ScreenNames.HOME_SCREEN) { //SPLASH_SCREEN
+        NavHost(navController = navController, startDestination = ScreenNames.SPLASH_SCREEN) {
             composable(ScreenNames.SPLASH_SCREEN) {
                 SplashScreen(navController)
             }
