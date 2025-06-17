@@ -28,10 +28,10 @@ fun SplashScreen(navController: NavController) {
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.fillMaxSize()
             ) {
-                if (viewModel.isFirstOpen()) {
-                    LaunchedEffect(Unit) {
-                        delay(2000)
+                LaunchedEffect(Unit) {
+                    delay(2000)
 
+                    if (viewModel.isFirstOpen()) {
                         navController.navigate(ScreenNames.START_SCREEN) {
                             // Xóa SplashScreen khỏi backstack
                             popUpTo(ScreenNames.SPLASH_SCREEN) {
@@ -40,17 +40,31 @@ fun SplashScreen(navController: NavController) {
                             // Tùy chọn: Đảm bảo không tạo nhiều instance của HomeScreen nếu nó đã ở trên cùng
                             launchSingleTop = true
                         }
-                    }
-                } else {
-                    navController.navigate(ScreenNames.SELECT_ACC_SCREEN) {
-                        // Xóa SplashScreen khỏi backstack
-                        popUpTo(ScreenNames.SPLASH_SCREEN) {
-                            inclusive = true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa
+                    } else {
+                        if(viewModel.acc != null){
+                            navController.navigate(ScreenNames.HOME_SCREEN) {
+                                // Xóa SplashScreen khỏi backstack
+                                popUpTo(ScreenNames.SPLASH_SCREEN) {
+                                    inclusive =
+                                        true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa
+                                }
+                                // Tùy chọn: Đảm bảo không tạo nhiều instance của HomeScreen nếu nó đã ở trên cùng
+                                launchSingleTop = true
+                            }
+                        } else {
+                            navController.navigate(ScreenNames.SELECT_ACC_SCREEN) {
+                                // Xóa SplashScreen khỏi backstack
+                                popUpTo(ScreenNames.SPLASH_SCREEN) {
+                                    inclusive =
+                                        true // Quan trọng: Bao gồm cả SPLASH_SCREEN trong việc xóa
+                                }
+                                // Tùy chọn: Đảm bảo không tạo nhiều instance của HomeScreen nếu nó đã ở trên cùng
+                                launchSingleTop = true
+                            }
                         }
-                        // Tùy chọn: Đảm bảo không tạo nhiều instance của HomeScreen nếu nó đã ở trên cùng
-                        launchSingleTop = true
                     }
                 }
+
                 Image(
                     painter = painterResource(R.drawable.travel_logo),
                     contentDescription = null,

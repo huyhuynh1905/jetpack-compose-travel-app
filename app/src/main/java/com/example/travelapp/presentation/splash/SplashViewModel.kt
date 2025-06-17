@@ -18,9 +18,7 @@ class SplashViewModel @Inject constructor(
     var acc : AccountModel? = null
 
     init {
-        showLog("SplashViewModel init call start")
         getAccount()
-        showLog("SplashViewModel init call end")
     }
 
     fun isFirstOpen(): Boolean {
