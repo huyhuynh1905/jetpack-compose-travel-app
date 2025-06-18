@@ -60,9 +60,11 @@ object Dimens {
     val appBarHeight = 40.dp
     val backButtonSize = 20.dp
     val backIconSize = 30.dp
+    val menuSize = 30.dp
     val flagSize = 30.dp
     val logoSize = 70.dp
     val sizeAvatarLogin = 50.dp
+    val sizeAvatarAcc = 50.dp
     val sizeAddAccount = 30.dp
     val widthFlagDropdown = 100.dp
     val heightFlagDropdown = 300.dp
