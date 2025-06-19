@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
+import com.example.travelapp.domain.model.AccountModel
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.utils.extension.customClickable
@@ -37,56 +37,65 @@ fun HomeScreen(){
         val accountModel by viewModel.accountModel.collectAsState()
 
         Column {
-            Row(
-                modifier = Modifier
-                    .padding(
-                        horizontal = Dimens.pdMedium,
-                        vertical = Dimens.pdMedium
-                    ),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                AsyncImage(
-                    model = accountModel?.avatarUrl,
-                    contentDescription = null,
-                    placeholder = painterResource(id = R.drawable.ic_plane),
-                    error = painterResource(id = R.drawable.ic_plane),
-                    modifier = Modifier
-                        .size(Dimens.sizeAvatarAcc)
-                        .clip(RoundedCornerShape(Dimens.radiusMedium))
-                        .background(Color.White),
-                    contentScale = ContentScale.Crop
-                )
-                Spacer(modifier = Modifier.width(Dimens.pdMedium))
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                ) {
-                    Text(
-                        text = accountModel?.name ?: "",
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                    Text(
-                        text = "Welcome to Caroline",
-                        style = MaterialTheme.typography.bodyMedium.copy(
-                            color = gray
-                        )
-                    )
-                }
-                Spacer(modifier = Modifier.width(Dimens.pdNormal))
-                Image(
-                    painter = painterResource(id = R.drawable.ic_menu),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(Dimens.menuSize)
-                        .customClickable(
-                            rippleColor = Color.Red,
-                            onClick = {
-                                //mở menu
-                            }
-                        )
-                )
-            }
+
+            InfoHeader(
+                accountModel = accountModel
+            )
         }
+    }
+}
+
+
+@Composable
+fun InfoHeader(accountModel: AccountModel?) {
+    Row(
+        modifier = Modifier
+            .padding(
+                horizontal = Dimens.pdMedium,
+                vertical = Dimens.pdMedium
+            ),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        AsyncImage(
+            model = accountModel?.avatarUrl,
+            contentDescription = null,
+            placeholder = painterResource(id = R.drawable.img_default_image),
+            error = painterResource(id = R.drawable.img_default_image),
+            modifier = Modifier
+                .size(Dimens.sizeAvatarAcc)
+                .clip(RoundedCornerShape(Dimens.radiusMedium))
+                .background(Color.White),
+            contentScale = ContentScale.Crop
+        )
+        Spacer(modifier = Modifier.width(Dimens.pdMedium))
+        Column(
+            modifier = Modifier
+                .weight(1f)
+        ) {
+            Text(
+                text = accountModel?.name ?: "",
+                style = MaterialTheme.typography.titleLarge
+            )
+            Text(
+                text = "Welcome to Caroline",
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    color = gray
+                )
+            )
+        }
+        Spacer(modifier = Modifier.width(Dimens.pdNormal))
+        Image(
+            painter = painterResource(id = R.drawable.ic_menu),
+            contentDescription = null,
+            modifier = Modifier
+                .size(Dimens.menuSize)
+                .customClickable(
+                    rippleColor = Color.Red,
+                    onClick = {
+                        //mở menu
+                    }
+                )
+        )
     }
 }
 
