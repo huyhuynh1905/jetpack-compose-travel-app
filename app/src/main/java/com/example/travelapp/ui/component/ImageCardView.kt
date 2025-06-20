@@ -100,7 +100,7 @@ fun ImageCardView(
 @Pixel6APreview
 @Composable
 fun ImageCardViewPreview(){
-    PreviewNoPaddingStatusBar {
+    PreviewWithStatusBar {
         ImageCardView(
             model = "https://hotelnikkohanoi.com.vn/wp-content/uploads/2023/05/co-do-hue-dia-diem-chup-anh-dep-o-hue.jpeg",
             contentDescription = "Dai Noi, Hue",

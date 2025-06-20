@@ -29,9 +29,6 @@ fun PreviewNoPaddingStatusBar(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(
-                    top = Dimens.statusBarHeight
-                )
         ) {
             content()
         }

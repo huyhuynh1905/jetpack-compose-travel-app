@@ -32,6 +32,7 @@ object Dimens {
     val radiusMedium = 16.dp
     val radiusLarge = 24.dp
     val circleRadius = 150.dp
+    val homeBarRadius = 35.dp
 
     //text size
     val textSizeSmaller = 10.sp
@@ -69,6 +70,8 @@ object Dimens {
     val widthFlagDropdown = 100.dp
     val heightFlagDropdown = 300.dp
     val iconDialogSize = 100.dp
+    val heightTopHomeBarAnimation = 300.dp
+    val sizeMenuBarHome = 100.dp
 
 
     //diff
