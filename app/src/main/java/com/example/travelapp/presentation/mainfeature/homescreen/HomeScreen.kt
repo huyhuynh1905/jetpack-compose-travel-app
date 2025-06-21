@@ -1,5 +1,6 @@
 package com.example.travelapp.presentation.mainfeature.homescreen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -7,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,8 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.hilt.navigation.compose.hiltViewModel
-import coil3.compose.AsyncImage
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,10 +32,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil3.compose.AsyncImage
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.domain.model.AccountModel
+import com.example.travelapp.presentation.mainfeature.homescreen.support.ItemBarAnimation
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.PreviewNoPaddingStatusBar
 import com.example.travelapp.ui.themes.gray
@@ -65,6 +65,14 @@ fun HomeScreen(){
 
 @Composable
 fun TopAnimationView() {
+    val listItem = listOf<ItemBarAnimation>(
+        ItemBarAnimation("Home", R.drawable.ic_home, ItemBarAnimation.HOME),
+        ItemBarAnimation("Plant", R.drawable.ic_plant, ItemBarAnimation.PLANT),
+        ItemBarAnimation("Bag", R.drawable.ic_bag, ItemBarAnimation.BAG),
+        ItemBarAnimation("Friend", R.drawable.ic_friend, ItemBarAnimation.FRIEND),
+        ItemBarAnimation("Diary", R.drawable.ic_diary, ItemBarAnimation.DIARY),
+        ItemBarAnimation("Search", R.drawable.ic_search, ItemBarAnimation.SEARCH),
+    )
     Box(modifier = Modifier
         .fillMaxWidth()
         .wrapContentHeight()
@@ -105,16 +113,40 @@ fun TopAnimationView() {
                     .padding(
                         horizontal = Dimens.pdBiger
                     ),
-                verticalArrangement = Arrangement.spacedBy(Dimens.pdMedium), // Khoảng cách giữa các hàng
-                horizontalArrangement = Arrangement.spacedBy(Dimens.pdMedium) // Khoảng cách giữa các cột
+                verticalArrangement = Arrangement.spacedBy(Dimens.pdBiger), // Khoảng cách giữa các hàng
+                horizontalArrangement = Arrangement.spacedBy(Dimens.pdBiger) // Khoảng cách giữa các cột
             ) {
-                items(listOf(1,2,3,4,5,6)) { itemText ->
+                items(listItem) { item ->
                     Box(
                         modifier = Modifier
                             .size(Dimens.sizeMenuBarHome)
+                            .clip(RoundedCornerShape(Dimens.homeBarRadius))
                             .background(Color.White)
+                            .customClickable(
+                                rippleColor = Color.Red.copy(alpha = 0.1f),
+                                onClick = {
+                                    _onClickItemBarAnimation(item.itemClick)
+                                }
+                            ),
+                        contentAlignment = Alignment.Center
                     ) {
-                        
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Image(
+                                painter = painterResource(item.icon),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(Dimens.iconBarHomeSize)
+                            )
+                            Text(
+                                text = item.title,
+                                style = MaterialTheme.typography.bodySmall.copy(
+                                    color = gray
+                                )
+                            )
+                        }
                     }
                 }
             }
@@ -122,6 +154,8 @@ fun TopAnimationView() {
             Spacer(modifier = Modifier.height(Dimens.pdBiger))
         }
     }
+
+
 }
 
 
@@ -179,6 +213,29 @@ fun InfoHeader(accountModel: AccountModel?) {
 }
 
 
+fun _onClickItemBarAnimation(itemClick: Int){
+    Log.d("TAG", "onClickItemBarAnimation: $itemClick")
+    when(itemClick){
+        ItemBarAnimation.HOME -> {
+            //mở home
+        }
+        ItemBarAnimation.PLANT -> {
+            //mở plant
+        }
+        ItemBarAnimation.BAG -> {
+            //mở bag
+        }
+        ItemBarAnimation.FRIEND -> {
+            //mở friend
+        }
+        ItemBarAnimation.DIARY -> {
+            //mở diary
+        }
+        ItemBarAnimation.SEARCH -> {
+            //mở search
+        }
+    }
+}
 
 @Pixel6APreview
 @Composable

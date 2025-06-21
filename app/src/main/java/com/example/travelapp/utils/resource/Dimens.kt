@@ -64,6 +64,7 @@ object Dimens {
     val menuSize = 30.dp
     val flagSize = 30.dp
     val logoSize = 70.dp
+    val iconBarHomeSize = 50.dp
     val sizeAvatarLogin = 50.dp
     val sizeAvatarAcc = 50.dp
     val sizeAddAccount = 30.dp
