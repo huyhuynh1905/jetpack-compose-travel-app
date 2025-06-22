@@ -1,6 +1,11 @@
 package com.example.travelapp.presentation.mainfeature.homescreen
 
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +31,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,20 +59,49 @@ fun HomeScreen(){
         isSafeArea = false,
         background = Color.White
     ) { viewModel->
+        var isPanelVisible by remember { mutableStateOf(false) }
 
         val accountModel by viewModel.accountModel.collectAsState()
 
         Column {
-            TopAnimationView()
-            InfoHeader(
-                accountModel = accountModel
-            )
+            AnimatedVisibility(
+                visible = isPanelVisible,
+                enter = slideInVertically(
+                    initialOffsetY = { -it }, // từ trên trượt xuống
+                    animationSpec = tween(durationMillis = 200)
+                ),
+                exit = slideOutVertically(
+                    targetOffsetY = { -it }, // trượt lên trên khi ẩn
+                    animationSpec = tween(durationMillis = 200)
+                )
+            ) {
+                TopAnimationView(
+                    close = {
+                        isPanelVisible = false
+                    }
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                InfoHeader(
+                    accountModel = accountModel,
+                    isPanelVisible = isPanelVisible,
+                    expand = {
+                        isPanelVisible = !isPanelVisible
+                    }
+                )
+            }
+
+
         }
     }
 }
 
 @Composable
-fun TopAnimationView() {
+fun TopAnimationView(close: () -> Unit) {
     val listItem = listOf<ItemBarAnimation>(
         ItemBarAnimation("Home", R.drawable.ic_home, ItemBarAnimation.HOME),
         ItemBarAnimation("Plant", R.drawable.ic_plant, ItemBarAnimation.PLANT),
@@ -100,6 +137,12 @@ fun TopAnimationView() {
                             start = Dimens.pdBiger,
                             end = Dimens.pdBiger,
                             bottom = Dimens.pdMedium
+                        )
+                        .customClickable(
+                            rippleColor = Color.Red.copy(alpha = 0.1f),
+                            onClick = {
+                                close()
+                            }
                         )
                 )
             }
@@ -160,12 +203,14 @@ fun TopAnimationView() {
 
 
 @Composable
-fun InfoHeader(accountModel: AccountModel?) {
+fun InfoHeader(accountModel: AccountModel?, expand: () -> Unit, isPanelVisible: Boolean) {
     Row(
         modifier = Modifier
             .padding(
-                horizontal = Dimens.pdMedium,
-                vertical = Dimens.pdMedium
+                top = if(!isPanelVisible) Dimens.statusBarHeight+Dimens.pdMedium else Dimens.pdMedium,
+                start = Dimens.pdMedium,
+                end = Dimens.pdMedium,
+                bottom = Dimens.pdMedium,
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -206,6 +251,7 @@ fun InfoHeader(accountModel: AccountModel?) {
                     rippleColor = Color.Red,
                     onClick = {
                         //mở menu
+                        expand()
                     }
                 )
         )
@@ -241,6 +287,10 @@ fun _onClickItemBarAnimation(itemClick: Int){
 @Composable
 fun HomeScreePreView(){
     PreviewNoPaddingStatusBar {
-        TopAnimationView()
+        TopAnimationView(
+            close = {
+
+            }
+        )
     }
 }
