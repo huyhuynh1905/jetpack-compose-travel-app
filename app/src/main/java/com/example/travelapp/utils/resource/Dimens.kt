@@ -68,6 +68,7 @@ object Dimens {
     val sizeAvatarLogin = 50.dp
     val sizeAvatarAcc = 50.dp
     val sizeAddAccount = 30.dp
+    val sizeIconTag = 18.dp
     val widthFlagDropdown = 100.dp
     val heightFlagDropdown = 300.dp
     val iconDialogSize = 100.dp
