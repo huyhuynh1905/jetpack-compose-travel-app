@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseViewModel
 import com.example.travelapp.domain.model.AccountModel
+import com.example.travelapp.domain.model.PlaceModel
 import com.example.travelapp.domain.usecase.AccountUseCase
 import com.example.travelapp.presentation.mainfeature.homescreen.support.ItemTagFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,9 +26,13 @@ class HomeViewModel @Inject constructor(
     private val _tagList = MutableStateFlow<List<ItemTagFilter>>(mutableListOf())
     var tagList = _tagList.asStateFlow()
 
+    private val _listPlace = MutableStateFlow<List<PlaceModel>>(mutableListOf())
+    var placeModels = _listPlace.asStateFlow()
+
     init {
         getAccountInfo()
         getTagList()
+        getListPlaceModels()
     }
 
     fun getAccountInfo(){
@@ -61,5 +66,72 @@ class HomeViewModel @Inject constructor(
             }
         }
         _tagList.value = newItems
+    }
+
+
+    fun getListPlaceModels(){
+        _listPlace.value = listOf<PlaceModel>(
+            PlaceModel(
+                "https://images.baodantoc.vn/uploads/2021/Th%C3%A1ng%209/Ng%C3%A0y_18/Thanh/15-2386.jpg",
+                "Lễ hội Cung Đình",
+                "#place",
+                "216km"
+            ),
+            PlaceModel(
+                "https://cdn3.ivivu.com/2023/10/du-lich-hue-ivivu.jpg",
+                "Cầu Tràng Tiền,\nSông Hương",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://disantrangan.vn/wp-content/uploads/2021/11/lang_tu_duc_hue-07-1.jpg",
+                "Khiêm Lăng",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://chauphuochuy.com/files/assets/langkhaidinh.jpg",
+                "Ứng Lăng",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://tapchidongnama.vn/wp-content/uploads/2024/05/z5407241112687_81d9581d6dcc34e3992df1c2a9a38a2c.jpg",
+                "Chùa Thiên Mụ",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://bazantravel.com/cdn/medias/uploads/72/72587-nui-ngu-binh-hue.jpg",
+                "Núi Ngự",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://hiddenlandtravel.com/vi/wp-content/uploads/2020/09/lang-minh-mang.png",
+                "Hiếu Lăng",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://disantrangan.vn/wp-content/uploads/2021/11/lang_gia_long_hue_01.jpg",
+                "Thiên Thọ Lăng",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://static.vinwonders.com/production/dan-nam-giao-2.jpg",
+                "Đàn Nam Giao",
+                "#place",
+                "216"
+            ),
+            PlaceModel(
+                "https://bthcm.hue.gov.vn/Portals/0/Medias/Nam2022/T10/quochochue.jpg",
+                "Quốc Học Huế",
+                "#place",
+                "216"
+            ),
+
+        )
     }
 }
