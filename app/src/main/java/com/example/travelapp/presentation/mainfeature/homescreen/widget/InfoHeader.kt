@@ -31,8 +31,6 @@ fun InfoHeader(accountModel: AccountModel?, expand: () -> Unit, isPanelVisible: 
         modifier = Modifier
             .padding(
                 top = if(!isPanelVisible) Dimens.statusBarHeight+Dimens.pdMedium else Dimens.pdMedium,
-                start = Dimens.pdMedium,
-                end = Dimens.pdMedium,
                 bottom = Dimens.pdMedium,
             ),
         verticalAlignment = Alignment.CenterVertically

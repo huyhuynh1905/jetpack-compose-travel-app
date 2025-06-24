@@ -31,12 +31,24 @@ import com.example.travelapp.utils.resource.Dimens
 fun TagFilter(tagList: List<ItemTagFilter>, onClick: (ItemTagFilter) -> Unit) {
     LazyRow {
         items(tagList.size+1){ index ->
-            if(index<tagList.size) ItemTagFilterView(
-                item = tagList[index],
-                onClick = {
-                    onClick(tagList[index])
+            when(index){
+                0 -> ItemTagFilterView(
+                    item = tagList[index],
+                    onClick = {
+                        onClick(tagList[index])
+                    }
+                )
+                in 1..tagList.size-1 -> Row {
+                    Spacer(modifier = Modifier.width(Dimens.pdMedium))
+                    ItemTagFilterView(
+                        item = tagList[index],
+                        onClick = {
+                            onClick(tagList[index])
+                        }
+                    )
                 }
-            ) else Spacer(modifier = Modifier.width(Dimens.pdMedium))
+                else -> Spacer(modifier = Modifier.width(Dimens.pdMedium))
+            }
         }
     }
 }
@@ -46,9 +58,6 @@ fun ItemTagFilterView(item: ItemTagFilter, onClick: () -> Unit){
     Card(
         modifier = Modifier
             .wrapContentWidth()
-            .padding(
-                start = Dimens.pdMedium,
-            )
             .customClickable(
                 rippleColor = yellowOr,
                 onClick = {

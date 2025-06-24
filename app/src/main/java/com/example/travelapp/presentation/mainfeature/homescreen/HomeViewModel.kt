@@ -81,55 +81,55 @@ class HomeViewModel @Inject constructor(
                 "https://cdn3.ivivu.com/2023/10/du-lich-hue-ivivu.jpg",
                 "Cầu Tràng Tiền,\nSông Hương",
                 "#place",
-                "216"
+                "51km"
             ),
             PlaceModel(
                 "https://disantrangan.vn/wp-content/uploads/2021/11/lang_tu_duc_hue-07-1.jpg",
                 "Khiêm Lăng",
                 "#place",
-                "216"
+                "25km"
             ),
             PlaceModel(
                 "https://chauphuochuy.com/files/assets/langkhaidinh.jpg",
                 "Ứng Lăng",
                 "#place",
-                "216"
+                "112km"
             ),
             PlaceModel(
                 "https://tapchidongnama.vn/wp-content/uploads/2024/05/z5407241112687_81d9581d6dcc34e3992df1c2a9a38a2c.jpg",
                 "Chùa Thiên Mụ",
                 "#place",
-                "216"
+                "13km"
             ),
             PlaceModel(
                 "https://bazantravel.com/cdn/medias/uploads/72/72587-nui-ngu-binh-hue.jpg",
                 "Núi Ngự",
                 "#place",
-                "216"
+                "5km"
             ),
             PlaceModel(
                 "https://hiddenlandtravel.com/vi/wp-content/uploads/2020/09/lang-minh-mang.png",
                 "Hiếu Lăng",
                 "#place",
-                "216"
+                "111km"
             ),
             PlaceModel(
                 "https://disantrangan.vn/wp-content/uploads/2021/11/lang_gia_long_hue_01.jpg",
                 "Thiên Thọ Lăng",
                 "#place",
-                "216"
+                "87km"
             ),
             PlaceModel(
                 "https://static.vinwonders.com/production/dan-nam-giao-2.jpg",
                 "Đàn Nam Giao",
                 "#place",
-                "216"
+                "55km"
             ),
             PlaceModel(
                 "https://bthcm.hue.gov.vn/Portals/0/Medias/Nam2022/T10/quochochue.jpg",
                 "Quốc Học Huế",
                 "#place",
-                "216"
+                "23km"
             ),
 
         )
