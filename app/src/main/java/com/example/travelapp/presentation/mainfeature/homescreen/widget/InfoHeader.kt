@@ -21,12 +21,15 @@ import androidx.compose.ui.res.painterResource
 import coil3.compose.AsyncImage
 import com.example.travelapp.R
 import com.example.travelapp.domain.model.AccountModel
+import com.example.travelapp.ui.navigation.LocalNavController
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
 import com.example.travelapp.utils.extension.customClickable
 import com.example.travelapp.utils.resource.Dimens
 
 @Composable
 fun InfoHeader(accountModel: AccountModel?, expand: () -> Unit, isPanelVisible: Boolean) {
+    val nav = LocalNavController.current
     Row(
         modifier = Modifier
             .padding(
@@ -43,7 +46,14 @@ fun InfoHeader(accountModel: AccountModel?, expand: () -> Unit, isPanelVisible: 
             modifier = Modifier
                 .size(Dimens.sizeAvatarAcc)
                 .clip(RoundedCornerShape(Dimens.radiusMedium))
-                .background(Color.White),
+                .background(Color.White)
+                .customClickable(
+                    rippleColor = Color.Red,
+                    onClick = {
+                        //mở menu
+                        nav?.navigate(ScreenNames.SAMPLE_SCREEN)
+                    }
+                ),
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.width(Dimens.pdMedium))

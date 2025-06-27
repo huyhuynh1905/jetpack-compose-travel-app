@@ -1,10 +1,10 @@
 package com.example.travelapp.presentation.mainfeature.homescreen
 
-import androidx.compose.animation.core.copy
 import androidx.lifecycle.viewModelScope
 import com.example.travelapp.R
 import com.example.travelapp.base.screen.BaseViewModel
 import com.example.travelapp.domain.model.AccountModel
+import com.example.travelapp.domain.model.BannerModel
 import com.example.travelapp.domain.model.PlaceModel
 import com.example.travelapp.domain.usecase.AccountUseCase
 import com.example.travelapp.presentation.mainfeature.homescreen.support.ItemTagFilter
@@ -29,10 +29,14 @@ class HomeViewModel @Inject constructor(
     private val _listPlace = MutableStateFlow<List<PlaceModel>>(mutableListOf())
     var placeModels = _listPlace.asStateFlow()
 
+    private val _bannerModels = MutableStateFlow<List<BannerModel>>(mutableListOf())
+    var bannerModels = _bannerModels.asStateFlow()
+
     init {
         getAccountInfo()
         getTagList()
         getListPlaceModels()
+        getBannerLists()
     }
 
     fun getAccountInfo(){
@@ -132,6 +136,39 @@ class HomeViewModel @Inject constructor(
                 "23km"
             ),
 
+        )
+    }
+
+    fun getBannerLists(){
+        _bannerModels.value = listOf<BannerModel>(
+            BannerModel(
+                0,
+                "https://images.baodantoc.vn/uploads/2021/Th%C3%A1ng%209/Ng%C3%A0y_18/Thanh/15-2386.jpg",
+                "Lễ hội Cung Đình",
+                "#place",
+                "216km"
+            ),
+            BannerModel(
+                1,
+                "https://cdn3.ivivu.com/2023/10/du-lich-hue-ivivu.jpg",
+                "Cầu Tràng Tiền,\nSông Hương",
+                "#place",
+                "51km"
+            ),
+            BannerModel(
+                2,
+                "https://disantrangan.vn/wp-content/uploads/2021/11/lang_tu_duc_hue-07-1.jpg",
+                "Khiêm Lăng",
+                "#place",
+                "25km"
+            ),
+            BannerModel(
+                3,
+                "https://chauphuochuy.com/files/assets/langkhaidinh.jpg",
+                "Ứng Lăng",
+                "#place",
+                "112km"
+            ),
         )
     }
 }

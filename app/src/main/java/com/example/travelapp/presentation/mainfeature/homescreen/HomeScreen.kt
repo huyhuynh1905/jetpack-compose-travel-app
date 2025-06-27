@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -31,9 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelapp.base.screen.BaseScreen
 import com.example.travelapp.presentation.mainfeature.homescreen.widget.InfoHeader
-import com.example.travelapp.presentation.mainfeature.homescreen.widget.PerfectForYou
 import com.example.travelapp.presentation.mainfeature.homescreen.widget.TagFilter
 import com.example.travelapp.presentation.mainfeature.homescreen.widget.TopAnimationView
+import com.example.travelapp.ui.component.carousel.VerticalCarouselWithIndicator
 import com.example.travelapp.ui.component.ImageCardView
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.PreviewNoPaddingStatusBar
@@ -52,6 +51,7 @@ fun HomeScreen(){
         val accountModel by viewModel.accountModel.collectAsState()
         val tagList by viewModel.tagList.collectAsState()
         val places by viewModel.placeModels.collectAsState()
+        val banners by viewModel.bannerModels.collectAsState()
 
         val itemHeights = remember(places) {
             places.map { (150..300).random().dp }
@@ -111,6 +111,17 @@ fun HomeScreen(){
                         }
                     )
                 }
+
+                item(
+                    span = StaggeredGridItemSpan.FullLine
+                ) {
+                    VerticalCarouselWithIndicator(
+                        intervalMs = 5000,
+                        items = banners
+                    )
+                }
+
+
 
                 item(
                     span = StaggeredGridItemSpan.FullLine

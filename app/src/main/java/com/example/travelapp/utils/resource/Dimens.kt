@@ -74,6 +74,7 @@ object Dimens {
     val iconDialogSize = 100.dp
     val heightTopHomeBarAnimation = 300.dp
     val sizeMenuBarHome = 100.dp
+    val sizeImageBanner = 200.dp
 
 
     //diff
