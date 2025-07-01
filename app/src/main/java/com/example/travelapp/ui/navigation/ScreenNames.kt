@@ -12,4 +12,5 @@ object ScreenNames {
     const val PIN_VERIFY_ACC_SCREEN = "PIN_VERIFY_ACC_SCREEN"
     const val LOGIN_SUCCESS_SCREEN = "LOGIN_SUCCESS_SCREEN"
     const val HOME_SCREEN = "HOME_SCREEN"
+    const val HOTEL_DETAIL_SCREEN = "HOTEL_DETAIL_SCREEN"
 }

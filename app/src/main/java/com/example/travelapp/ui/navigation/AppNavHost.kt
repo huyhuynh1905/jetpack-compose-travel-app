@@ -14,6 +14,7 @@ import com.example.travelapp.presentation.loginfeature.selectaccount.SelectAccou
 import com.example.travelapp.presentation.loginfeature.verifyaccount.VerifyAccountScreen
 import com.example.travelapp.presentation.loginfeature.verifypin.VerifyPinCodeScreen
 import com.example.travelapp.presentation.mainfeature.homescreen.HomeScreen
+import com.example.travelapp.presentation.mainfeature.hoteldetail.HotelDetailScreen
 import com.example.travelapp.presentation.onboard.OnBoardPageMain
 import com.example.travelapp.presentation.onboard.StartScreen
 import com.example.travelapp.presentation.sample.SampleScreen
@@ -58,6 +59,9 @@ fun AppNavHost() {
             }
             composable(ScreenNames.HOME_SCREEN) {
                 HomeScreen()
+            }
+            composable(ScreenNames.HOTEL_DETAIL_SCREEN) {
+                HotelDetailScreen()
             }
         }
     }
