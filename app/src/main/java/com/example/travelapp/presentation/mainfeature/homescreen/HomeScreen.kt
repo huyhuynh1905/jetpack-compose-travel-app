@@ -36,6 +36,8 @@ import com.example.travelapp.ui.component.carousel.VerticalCarouselWithIndicator
 import com.example.travelapp.ui.component.ImageCardView
 import com.example.travelapp.ui.component.Pixel6APreview
 import com.example.travelapp.ui.component.PreviewNoPaddingStatusBar
+import com.example.travelapp.ui.navigation.LocalNavController
+import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.redBg
 import com.example.travelapp.utils.resource.Dimens
 
@@ -46,6 +48,7 @@ fun HomeScreen(){
         isSafeArea = false,
         background = Color.White
     ) { viewModel->
+        val navController = LocalNavController.current
         var isPanelVisible by remember { mutableStateOf(false) }
 
         val accountModel by viewModel.accountModel.collectAsState()
@@ -56,6 +59,7 @@ fun HomeScreen(){
         val itemHeights = remember(places) {
             places.map { (150..300).random().dp }
         }
+
 
         Column {
             AnimatedVisibility(
@@ -164,7 +168,10 @@ fun HomeScreen(){
                         elevation = Dimens.zero,
                         contentScale = ContentScale.Crop,
                         tag = places[index].tagCategory,
-                        distance = places[index].distance
+                        distance = places[index].distance,
+                        onClick = {
+                            navController?.navigate("${ScreenNames.HOTEL_DETAIL_SCREEN}/${places[index].placeName}")
+                        }
                     )
                 }
                 item(

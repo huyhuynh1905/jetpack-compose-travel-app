@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.travelapp.presentation.loginfeature.addaccount.AddAccountScreen
 import com.example.travelapp.presentation.loginfeature.createaccount.CreateAccountScreen
 import com.example.travelapp.presentation.loginfeature.loginsuccess.LoginSuccessScreen
@@ -60,7 +62,9 @@ fun AppNavHost() {
             composable(ScreenNames.HOME_SCREEN) {
                 HomeScreen()
             }
-            composable(ScreenNames.HOTEL_DETAIL_SCREEN) {
+            composable("${ScreenNames.HOTEL_DETAIL_SCREEN}/{${Arguments.TITLE_HOTEL}}", arguments = listOf(
+                navArgument(Arguments.TITLE_HOTEL) { type = NavType.StringType }
+            )) {
                 HotelDetailScreen()
             }
         }
