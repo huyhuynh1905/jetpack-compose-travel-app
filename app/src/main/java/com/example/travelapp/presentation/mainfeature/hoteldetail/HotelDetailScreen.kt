@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelapp.base.screen.BaseScreen
+import com.example.travelapp.presentation.mainfeature.hoteldetail.widget.PageTabBarView
 import com.example.travelapp.ui.component.AppBarComponent
 import com.example.travelapp.ui.navigation.Arguments
 import com.example.travelapp.ui.navigation.LocalNavController
@@ -26,6 +27,8 @@ fun HotelDetailScreen(){
                 title = title?:"",
                 navController = navController!!
             )
+
+            PageTabBarView()
         }
     }
 }
