@@ -52,6 +52,9 @@ object Dimens {
     val elevationMedium = 6.dp
     val elevationHigh = 12.dp
 
+    //border
+    val borderWidthNormal = 1.dp
+    val borderWidthMedium = 2.dp
 
     //size
     val zero = 0.dp
@@ -76,6 +79,7 @@ object Dimens {
     val sizeMenuBarHome = 100.dp
     val sizeImageBanner = 200.dp
     val sizeIndicator = 12.dp
+    val heightHoltelPrice = 75.dp
 
 
     //diff
