@@ -144,4 +144,6 @@ dependencies {
     implementation(libs.room.ktx)
     implementation(libs.room.paging)
 
+    implementation(libs.jetpack.loading)
+
 }

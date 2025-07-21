@@ -18,9 +18,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import coil3.compose.AsyncImage
 import com.example.travelapp.R
 import com.example.travelapp.domain.model.AccountModel
+import com.example.travelapp.ui.component.ImageComponent
 import com.example.travelapp.ui.navigation.LocalNavController
 import com.example.travelapp.ui.navigation.ScreenNames
 import com.example.travelapp.ui.themes.gray
@@ -38,11 +38,9 @@ fun InfoHeader(accountModel: AccountModel?, expand: () -> Unit, isPanelVisible: 
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        AsyncImage(
+        ImageComponent(
             model = accountModel?.avatarUrl,
             contentDescription = null,
-            placeholder = painterResource(id = R.drawable.img_default_image),
-            error = painterResource(id = R.drawable.img_default_image),
             modifier = Modifier
                 .size(Dimens.sizeAvatarAcc)
                 .clip(RoundedCornerShape(Dimens.radiusMedium))

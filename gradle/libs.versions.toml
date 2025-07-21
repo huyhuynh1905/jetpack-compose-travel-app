@@ -46,6 +46,8 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomversion"}
 room-paging = { group = "androidx.room", name = "room-paging", version.ref = "roomversion"}
 
+jetpack-loading = { group = "com.github.MahboubehSeyedpour", name = "jetpack-loading", version = "1.1.0"}
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

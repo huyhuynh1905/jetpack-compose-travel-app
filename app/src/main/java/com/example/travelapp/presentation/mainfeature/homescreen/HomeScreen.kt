@@ -174,6 +174,7 @@ fun HomeScreen(){
                         }
                     )
                 }
+
                 item(
                     span = StaggeredGridItemSpan.FullLine
                 ) {

@@ -1,6 +1,5 @@
 package com.example.travelapp.ui.component
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,12 +17,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
-import coil3.compose.AsyncImage
-import com.example.travelapp.R
 import com.example.travelapp.utils.extension.customClickable
 import com.example.travelapp.utils.resource.Dimens
 
@@ -56,13 +52,11 @@ fun ImageCardView(
                 onClick = onClick,
             )
     ) {
-        AsyncImage(
+        ImageComponent(
             model = model,
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier.fillMaxWidth(),
-            placeholder = painterResource(id = R.drawable.img_default_image),
-            error = painterResource(id = R.drawable.img_default_image),
         )
         if(contentDescription.isNotBlank()) Column(
             modifier = Modifier

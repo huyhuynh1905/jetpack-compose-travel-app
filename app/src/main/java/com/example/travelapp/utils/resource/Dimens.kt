@@ -80,6 +80,7 @@ object Dimens {
     val sizeImageBanner = 200.dp
     val sizeIndicator = 12.dp
     val heightHoltelPrice = 75.dp
+    val sizeLoadingImage = 5.dp
 
 
     //diff
