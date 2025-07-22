@@ -18,9 +18,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.travelapp.ui.themes.dark
+import com.example.travelapp.utils.extension.toTitle
 import com.example.travelapp.utils.resource.Dimens
 
 
@@ -46,7 +48,7 @@ fun AppBarComponent(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    horizontal = Dimens.pdNormal,
+//                    horizontal = Dimens.pdNormal,
                     vertical = Dimens.pdSmaller
                 ),
             verticalAlignment = Alignment.CenterVertically,
@@ -94,11 +96,12 @@ fun AppBarComponent(
                 )
         ) {
             Text(
-                text = title,
+                text = title.toTitle(),
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Normal
                 ),
-                maxLines = 1
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         }
     }

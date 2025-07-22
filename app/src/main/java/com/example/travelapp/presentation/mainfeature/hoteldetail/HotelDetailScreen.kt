@@ -14,7 +14,10 @@ import com.example.travelapp.ui.navigation.LocalNavController
 
 @Composable
 fun HotelDetailScreen(){
-    BaseScreen(viewModel = hiltViewModel<HotelDetailViewModel>()) { vm ->
+    BaseScreen(
+        viewModel = hiltViewModel<HotelDetailViewModel>(),
+        isSafeArea = false
+    ) { vm ->
         val navController = LocalNavController.current
 
         val title = navController?.currentBackStackEntry?.arguments?.getString(Arguments.TITLE_HOTEL)
@@ -25,10 +28,12 @@ fun HotelDetailScreen(){
         ) {
             AppBarComponent(
                 title = title?:"",
-                navController = navController!!
+                navController = navController!!,
             )
 
             PageTabBarView()
+
+
         }
     }
 }
